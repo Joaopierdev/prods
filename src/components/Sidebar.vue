@@ -1,13 +1,10 @@
 <script setup>
     import Rodape from '@/components/Rodape.vue';
-
     import Produtos from '@/components/Produtos.vue';
-
     import Categorias from '@/components/Categorias.vue';
-    
     import Usuarios from '@/components/Usuarios.vue';
-
     import userInfo from '@/components/User-info.vue';
+    import Content from "@/components/Content.vue";
 </script>
 
 <template>
@@ -34,7 +31,6 @@
                 <!-- Fim da logo -->
                 <!-- Dados do usuário (Canto superior direito) -->
                 <div class="flex items-center">
-                    
                     <userInfo/>
                 </div> 
             </div>
@@ -51,9 +47,16 @@
             </ul>
         </div>
     </aside>
-    <Rodape/>
+    <div class="content">
+        <Content/>
+    </div>
+    
+    <div class="rodape">
+        <Rodape/>
+    </div>
 </template>
 
 
 <style>
+
 </style>

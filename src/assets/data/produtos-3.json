@@ -1,0 +1,194 @@
+{
+    "produtos":
+    [
+        {
+        "codigo": 41,
+        "status": "Ativo",
+        "nome": "Porta-Retrato de Madeira",
+        "categoria": "Casa e Decoração",
+        "preco": 24.99,
+        "quantidade_estoque": 70,
+        "quantidade_vendida": 12
+        },
+        {
+        "codigo": 42,
+        "status": "Ativo",
+        "nome": "Chapéu de Sol",
+        "categoria": "Acessórios",
+        "preco": 39.99,
+        "quantidade_estoque": 80,
+        "quantidade_vendida": 15
+        },
+        {
+        "codigo": 43,
+        "status": "Ativo",
+        "nome": "Carrinho de Bebê Dobrável",
+        "categoria": "Bebês",
+        "preco": 199.99,
+        "quantidade_estoque": 40,
+        "quantidade_vendida": 8
+        },
+        {
+        "codigo": 44,
+        "status": "Ativo",
+        "nome": "Brinquedo Educativo",
+        "categoria": "Brinquedos",
+        "preco": 29.99,
+        "quantidade_estoque": 60,
+        "quantidade_vendida": 10
+        },
+        {
+        "codigo": 45,
+        "status": "Ativo",
+        "nome": "Cesta de Café da Manhã",
+        "categoria": "Alimentos e Bebidas",
+        "preco": 99.99,
+        "quantidade_estoque": 80,
+        "quantidade_vendida": 15
+        },
+        {
+        "codigo": 46,
+        "status": "Ativo",
+        "nome": "Jogo de Panelas de Ferro Fundido",
+        "categoria": "Culinária",
+        "preco": 149.99,
+        "quantidade_estoque": 30,
+        "quantidade_vendida": 5
+        },
+        {
+        "codigo": 47,
+        "status": "Ativo",
+        "nome": "Livro: O Senhor dos Anéis",
+        "categoria": "Livros",
+        "preco": 39.99,
+        "quantidade_estoque": 100,
+        "quantidade_vendida": 20
+        },
+        {
+        "codigo": 48,
+        "status": "Ativo",
+        "nome": "DVD: Titanic",
+        "categoria": "Filmes",
+        "preco": 9.99,
+        "quantidade_estoque": 200,
+        "quantidade_vendida": 40
+        },
+        {
+        "codigo": 49,
+        "status": "Ativo",
+        "nome": "Console Xbox Series X",
+        "categoria": "Games",
+        "preco": 599.99,
+        "quantidade_estoque": 50,
+        "quantidade_vendida": 10
+        },
+        {
+        "codigo": 50,
+        "status": "Ativo",
+        "nome": "Tapete Decorativo",
+        "categoria": "Casa e Decoração",
+        "preco": 79.99,
+        "quantidade_estoque": 80,
+        "quantidade_vendida": 15
+        },
+        {
+        "codigo": 51,
+        "status": "Ativo",
+        "nome": "Cesto Organizador",
+        "categoria": "Casa e Decoração",
+        "preco": 19.99,
+        "quantidade_estoque": 60,
+        "quantidade_vendida": 8
+        },
+        {
+        "codigo": 52,
+        "status": "Ativo",
+        "nome": "Conjunto de Pincéis de Maquiagem",
+        "categoria": "Beleza e Perfumaria",
+        "preco": 29.99,
+        "quantidade_estoque": 100,
+        "quantidade_vendida": 20
+        },
+        {
+        "codigo": 53,
+        "status": "Ativo",
+        "nome": "Fone de Ouvido com Microfone",
+        "categoria": "Eletrônicos",
+        "preco": 39.99,
+        "quantidade_estoque": 120,
+        "quantidade_vendida": 25
+        },
+        {
+        "codigo": 54,
+        "status": "Ativo",
+        "nome": "Mochila Escolar Infantil",
+        "categoria": "Acessórios",
+        "preco": 24.99,
+        "quantidade_estoque": 150,
+        "quantidade_vendida": 30
+        },
+        {
+        "codigo": 55,
+        "status": "Ativo",
+        "nome": "Luminária de Mesa",
+        "categoria": "Iluminação",
+        "preco": 49.99,
+        "quantidade_estoque": 200,
+        "quantidade_vendida": 40
+        },
+        {
+        "codigo": 56,
+        "status": "Ativo",
+        "nome": "Quadro Decorativo",
+        "categoria": "Casa e Decoração",
+        "preco": 39.99,
+        "quantidade_estoque": 80,
+        "quantidade_vendida": 15
+        },
+        {
+        "codigo": 57,
+        "status": "Ativo",
+        "nome": "Pijama Feminino",
+        "categoria": "Roupas",
+        "preco": 34.99,
+        "quantidade_estoque": 100,
+        "quantidade_vendida": 20
+        },
+        {
+        "codigo": 58,
+        "status": "Ativo",
+        "nome": "Mala de Viagem Grande",
+        "categoria": "Malas e Mochilas",
+        "preco": 149.99,
+        "quantidade_estoque": 70,
+        "quantidade_vendida": 10
+        },
+        {
+        "codigo": 59,
+        "status": "Ativo",
+        "nome": "Porta-Retrato Digital",
+        "categoria": "Tecnologia",
+        "preco": 79.99,
+        "quantidade_estoque": 80,
+        "quantidade_vendida": 15
+        },
+        {
+        "codigo": 60,
+        "status": "Ativo",
+        "nome": "Almofada Decorativa",
+        "categoria": "Casa e Decoração",
+        "preco": 19.99,
+        "quantidade_estoque": 50,
+        "quantidade_vendida": 8
+        },
+        {
+        "codigo": 61,
+        "status": "Ativo",
+        "nome": "Jogo de Xícaras de Chá",
+        "categoria": "Casa e Decoração",
+        "preco": 29.99,
+        "quantidade_estoque": 60,
+        "quantidade_vendida": 10
+        }
+    ]
+}

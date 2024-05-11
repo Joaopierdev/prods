@@ -2,7 +2,32 @@
 </script>
 
 <template>
-    <div class="p-4 sm:ml-64">
+
+    <footer class="bg-gray-900 rounded-lg shadow ml-0 mb-1">
+        <div class="w-full mx-auto max-w-screen-xl p-6 md:flex md:items-center md:justify-between">
+        <span class="text-md text-white sm:text-center">© {{new Date().getFullYear()}} <a href="https://flowbite.com/" class="hover:underline">PRODS™</a>. Todos os direitos reservados.
+        </span>
+        <ul class="flex flex-wrap items-center mt-3 text-md font-medium text-white sm:mt-0">
+            <li>
+                <a href="#" class="hover:underline me-4 md:me-6">Sobre</a>
+            </li>
+            <li>
+                <a href="#" class="hover:underline me-4 md:me-6">Política de privacidade</a>
+            </li>
+            <li>
+                <a href="#" class="hover:underline me-4 md:me-6">Licença</a>
+            </li>
+            <li>
+                <a href="#" class="hover:underline">Contate-nos</a>
+            </li>
+        </ul>
+        </div>
+    </footer>
+
+
+
+
+    <!-- <div class="p-4 sm:ml-64">
         <div class="p-4">
             <div class="flex items-center justify-center h-48 mb-4 rounded">
                 <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
@@ -49,13 +74,9 @@
                 </footer>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style>
-    footer{
-        position: absolute;
-    bottom:0%;
-    width: 100%;
-    }
+
 </style>
