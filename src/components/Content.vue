@@ -30,7 +30,7 @@ h1{
     display: none;
 }
 
-@media screen and (max-width: 676px) {
+@media(max-width: 676px) {
     .table-desktop {
         display: none;
     }

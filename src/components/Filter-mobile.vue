@@ -18,7 +18,7 @@ function atualizaPreco(event) {
 <template>
     <main class="content border-solid border-2 border-gray-200 shadow-lg rounded-lg">
         <div class="overflow-x-auto">
-            <form class="filter flex flex-col lg:flex-row sm:space-x-4 max-w-sm mx-auto my-4">
+            <form class="filter flex flex-col lg:flex-row sm:space-x-5 max-w-sm mx-auto my-4">
                 <div class="flex flex-col w-full sm:w-1/2">
                     <label for="number-input"
                         class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Código:</label>

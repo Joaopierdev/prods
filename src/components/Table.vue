@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import produtosJson from '@/assets/data/produtos.json';
 import Filter from "@/components/Filter.vue"
+import FilterMobile from "@/components/Filter-mobile.vue"
 
 const produtos = ref([]);
 const preco = ref(0);
@@ -18,7 +19,12 @@ function atualizaPreco(event) {
 
 <template>
     <main class="content">
-        <Filter />
+        <class class="filter-desktop">
+            <Filter />
+        </class>
+        <class class="filter-mobile">
+            <FilterMobile/>
+        </class>
         <div class="overflow-x-auto ">
         </div>
         <div class="relative overflow-x-auto border-solid border-2 border-indigo-600 sm:rounded-lg shadow-lg mt-6">
@@ -113,5 +119,22 @@ button {
     justify-content: center;
     align-items: center;
     display: flex;
+}
+
+
+.filter-desktop {
+    display: block; /* inline, inline-block */
+}
+.filter-mobile {
+    display: none;
+}
+
+@media (max-width: 1022px) {
+    .filter-desktop {
+        display: none;
+    }
+    .filter-mobile {
+        display: block; /* ou inline, inline-block */
+    }
 }
 </style>
