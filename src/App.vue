@@ -1,5 +1,5 @@
 <script setup>
-  import side from '@/components/Sidebar.vue';
+  import side from '@/components/components-sidebar/Sidebar.vue';
   import rodape from '@/components/Rodape.vue';
 </script>
 

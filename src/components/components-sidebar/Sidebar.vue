@@ -1,10 +1,10 @@
 <script setup>
     import Rodape from '@/components/Rodape.vue';
-    import Produtos from '@/components/Produtos.vue';
-    import Categorias from '@/components/Categorias.vue';
-    import Usuarios from '@/components/Usuarios.vue';
-    import userInfo from '@/components/User-info.vue';
-    import Content from "@/components/Content.vue";
+    import Produtos from '@/components/components-sidebar/Produtos.vue';
+    import Categorias from '@/components/components-sidebar/Categorias.vue';
+    import Usuarios from '@/components/components-sidebar/Usuarios.vue';
+    import userInfo from '@/components/components-sidebar/User-info.vue';
+    import Content from "@/components/components-produtos/Content.vue";
 </script>
 
 <template>

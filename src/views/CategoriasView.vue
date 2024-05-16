@@ -1,9 +1,11 @@
 <script setup>
-    import Content from '@/components/Content.vue'
+    import ContentCategorias from '@/components/components-categorias/Content-categorias.vue'
 </script>
 
 <template>
-    
+    <main>
+        <ContentCategorias />
+    </main>
 </template>
 
 <style>

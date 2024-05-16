@@ -1,16 +1,16 @@
 <script setup>
-import Table from "@/components/Table.vue"
-import TableMobile from "@/components/Table-mobile.vue"
+import TableCategoria from "@/components/components-categorias/Table-Categorias.vue"
+import TableMobileCategoria from "@/components/components-categorias/Table-mobile-categoria.vue"
 </script>
 
 <template>
     <div class="p-8 sm:ml-64">
         <h1 class="text-4xl font-bold mb-4 sm:mb-1">Lista de Produtos</h1>
         <div class="table-desktop">
-            <Table/>
+            <TableCategoria/>
         </div>
         <div class="table-mobile">
-            <TableMobile/>
+            <TableMobileCategoria/>
         </div>
 
     </div>
