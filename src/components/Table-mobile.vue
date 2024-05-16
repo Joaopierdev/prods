@@ -1,7 +1,7 @@
 <script setup>
     import { ref, onMounted } from 'vue';
     import produtosJson from '@/assets/data/produtos.json';
-    import Filter from "@/components/Filter.vue"
+    import FilterMobile from "@/components/Filter-mobile.vue";
 
     const produtos = ref([]);
     const preco = ref(0);
@@ -18,7 +18,7 @@
 
 <template>
     <main class="content">
-        <Filter />
+        <FilterMobile />
         <div class="overflow-x-auto">
         </div>
         <div class="relative overflow-x-auto border-solid border-2 border-indigo-600 sm:rounded-lg shadow-lg mt-6">
@@ -37,7 +37,8 @@
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ produto.codigo }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ produto.nome }}</td>
                         <td class="flex px-6 py-4">
-                            <RouterLink to="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><svg
+                            <RouterLink to="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                <svg
                                     class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
@@ -46,7 +47,8 @@
                                         d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
                                 </svg>
                             </RouterLink>
-                            <RouterLink to="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline"><svg
+                            <RouterLink to="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">
+                                <svg
                                     class="w-4 h-4 text-red-100 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
                                     viewBox="0 0 24 24">

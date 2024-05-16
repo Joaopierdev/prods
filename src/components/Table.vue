@@ -54,12 +54,16 @@ function atualizaPreco(event) {
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ produto.codigo }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ produto.nome }}</td>
-                        <td class="px-6 py-4">{{ produto.status }}</td>
+                        <td class="mx-6 my-4">
+                            <div style="" class="mx-4" :class="produto.status === 'ativo' ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800  rounded-full dark:bg-red-900 dark:text-red-300'">
+                                {{ produto.status }}
+                            </div>
+                        </td>
                         <td class="px-6 py-4">{{ produto.categoria }}</td>
                         <td class="px-6 py-4">R${{ produto.preco }}</td>
                         <td class="px-6 py-4">{{ produto.quantidade_estoque }}</td>
                         <td class="px-6 py-4">{{ produto.quantidade_vendida }}</td>
-                        <td class="flex px-6 py-4">
+                        <td class="flex items-center justify-center px-6 py-4">
                             <RouterLink to="#" class="font-medium w text-blue-600 dark:text-blue-500 hover:underline">
                                 <svg
                                     class="w-6 h-4 text-gray-800 dark:text-white" aria-hidden="true"

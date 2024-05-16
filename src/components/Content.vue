@@ -12,8 +12,7 @@ import TableMobile from "@/components/Table-mobile.vue"
         <div class="table-mobile">
             <TableMobile/>
         </div>
-        
-        <Pagination/>
+
     </div>
 </template>
 
