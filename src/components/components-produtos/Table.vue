@@ -1,8 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import produtosJson from '@/assets/data/produtos.json';
-import Filter from "@/components/Filter.vue"
-import FilterMobile from "@/components/Filter-mobile.vue"
+import Filter from "@/components/components-produtos/Filter.vue"
+import FilterMobile from "@/components/components-produtos/Filter-mobile.vue"
 
 const produtos = ref([]);
 const preco = ref(0);

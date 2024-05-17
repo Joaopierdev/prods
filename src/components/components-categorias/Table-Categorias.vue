@@ -1,8 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import categoriasJson from '@/assets/data-categoria/categorias.json';
-import Filter from "@/components/Filter.vue"
-import FilterMobile from "@/components/Filter-mobile.vue"
+import Filter from "@/components/components-categorias/Filter-categorias.vue"
 
 const categorias = ref([]);
 
@@ -16,9 +15,6 @@ onMounted(() => {
     <main class="content">
         <class class="filter-desktop">
             <Filter />
-        </class>
-        <class class="filter-mobile">
-            <FilterMobile/>
         </class>
         <div class="overflow-x-auto ">
         </div>
@@ -113,8 +109,8 @@ button {
 }
 
 
-.filter-desktop {
-    display: block; /* inline, inline-block */
+/* .filter-desktop {
+    display: block;
 }
 .filter-mobile {
     display: none;
@@ -125,7 +121,7 @@ button {
         display: none;
     }
     .filter-mobile {
-        display: block; /* ou inline, inline-block */
+        display: block;
     }
-}
+} */
 </style>
