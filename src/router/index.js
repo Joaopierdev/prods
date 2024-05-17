@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CategoriasView from '../views/CategoriasView.vue'
+import CadastroProdutos from '../views/CadastrarProduto.vue'
 
 
 const router = createRouter({
@@ -15,6 +16,11 @@ const router = createRouter({
       path: '/categorias',
       name: 'categorias',
       component: CategoriasView
+    },
+    {
+      path: '/produtos/cadastrar',
+      name: 'cadastrar produtos',
+      component: CadastroProdutos
     }
   ]
 })
