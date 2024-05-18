@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import CategoriasView from '../views/CategoriasView.vue'
 import CadastroProdutos from '../views/CadastrarProdutoView.vue'
-import UsuariosView from '../views/UsuariosView.vue'
+import CategoriasView from '../views/CategoriasView.vue'
 import CadastroCategoriaView from '../views/CadastrarCategoriaView.vue'
+import UsuariosView from '../views/UsuariosView.vue'
+import CadastroUsuarioView from '../views/CadastrarUsuarioView.vue'
+
+
 
 
 const router = createRouter({
@@ -33,6 +36,11 @@ const router = createRouter({
       path: '/usuarios',
       name: 'usuarios',
       component: UsuariosView
+    },
+    {
+      path: '/usuarios/cadastrar',
+      name: 'cadastrar usuarios',
+      component: CadastroUsuarioView
     }
   ]
 })
