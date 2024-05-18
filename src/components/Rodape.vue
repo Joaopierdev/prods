@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="sm:ml-64">
+    <div class="sm:ml-64 ">
         <footer class="bg-gray-900 shadow">
             <div class="w-full mx-auto max-w-screen-xl p-5 md:flex md:items-center md:justify-between">
                 <span class="text-md text-white sm:text-center">© {{new Date().getFullYear()}} <a href="https://flowbite.com/" class="hover:underline">PRODS™</a>. Todos os direitos reservados.
@@ -79,5 +79,7 @@
 </template>
 
 <style>
-
+    footer{
+        position: relative;
+    }
 </style>

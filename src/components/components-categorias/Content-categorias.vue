@@ -1,6 +1,5 @@
 <script setup>
 import TableCategoria from "@/components/components-categorias/Table-Categorias.vue"
-import TableMobileCategoria from "@/components/components-categorias/Table-mobile-categoria.vue"
 </script>
 
 <template>
@@ -9,10 +8,6 @@ import TableMobileCategoria from "@/components/components-categorias/Table-mobil
         <div class="table-desktop">
             <TableCategoria/>
         </div>
-        <div class="table-mobile">
-            <TableMobileCategoria/>
-        </div>
-
     </div>
 </template>
 
@@ -20,22 +15,6 @@ import TableMobileCategoria from "@/components/components-categorias/Table-mobil
 
 h1{
     margin-top: 5rem;
-}
-
-.table-desktop {
-    display: block; /* inline, inline-block */
-}
-.table-mobile {
-    display: none;
-}
-
-@media(max-width: 676px) {
-    .table-desktop {
-        display: none;
-    }
-    .table-mobile {
-        display: block; /* ou inline, inline-block */
-    }
 }
 
 </style>
