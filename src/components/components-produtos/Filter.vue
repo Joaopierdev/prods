@@ -28,7 +28,7 @@ function atualizaPreco(event) {
                 <div class="flex flex-col w-full sm:w-1/2">
                     <label for="default-input" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
                     <input type="text" id="default-input"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Nome do prodto">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Nome do produto">
                 </div>
                 <div class="flex flex-col w-full sm:w-1/2">
                     <label for="status" class="block text-sm font-medium text-gray-900 dark:text-white">
@@ -42,15 +42,17 @@ function atualizaPreco(event) {
                 </div>
 
                 <div class="flex flex-col w-full sm:w-1/2">
-                    <label for="price-range" class="block text-sm font-medium text-gray-900 dark:text-white">
-                        Preço
+                    <label for="status" class="block text-sm font-medium text-gray-900 dark:text-white">
+                        Categoria
                     </label>
-                    <input type="range" id="price-range" class="accent-indigo-600 w-full mt-2" min="0" max="10000"
-                        :value="preco" @input="atualizaPreco" />
-                    <div class="flex justify-between text-gray-500 mt-0">
-                        <span>Preço: R${{ preco }}</span>
-                        <span>R$10.000</span>
-                    </div>
+                    <select id="status"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <option>Televisores</option>
+                        <option>Informática</option>
+                        <option>Eletronicos</option>
+                        <option>Videogames</option>
+                        <option>Acessórios</option>
+                    </select>
                 </div>
                 <div class="flex flex-col sm:flex-row justify-between items-center">
                     <button

@@ -1,8 +1,7 @@
 {
     "produtos": [
-
       {
-        "codigo": 20,
+        "codigo": 11,
         "status": "ativo",
         "nome": "Mouse Gamer",
         "categoria": "Acessórios de Computador",
@@ -11,7 +10,7 @@
         "quantidade_vendida": 15
       },
       {
-        "codigo": 21,
+        "codigo": 12,
         "status": "ativo",
         "nome": "Teclado Mecânico",
         "categoria": "Acessórios de Computador",
@@ -20,7 +19,7 @@
         "quantidade_vendida": 10
       },
       {
-        "codigo": 22,
+        "codigo": 13,
         "status": "ativo",
         "nome": "Cadeira Gamer",
         "categoria": "Móveis",
@@ -29,7 +28,7 @@
         "quantidade_vendida": 8
       },
       {
-        "codigo": 23,
+        "codigo": 14,
         "status": "ativo",
         "nome": "Chaveiro de Pelúcia",
         "categoria": "Acessórios",
@@ -38,7 +37,7 @@
         "quantidade_vendida": 30
       },
       {
-        "codigo": 24,
+        "codigo": 15,
         "status": "ativo",
         "nome": "Caneca Personalizada",
         "categoria": "Casa e Decoração",
@@ -47,7 +46,7 @@
         "quantidade_vendida": 25
       },
       {
-        "codigo": 25,
+        "codigo": 16,
         "status": "ativo",
         "nome": "Kit de Ferramentas",
         "categoria": "Ferramentas",
@@ -56,7 +55,7 @@
         "quantidade_vendida": 15
       },
       {
-        "codigo": 26,
+        "codigo": 17,
         "status": "ativo",
         "nome": "Máquina de Café Expresso",
         "categoria": "Eletrodomésticos",
@@ -65,7 +64,7 @@
         "quantidade_vendida": 5
       },
       {
-        "codigo": 27,
+        "codigo": 18,
         "status": "Ativo",
         "nome": "Perfume Importado",
         "categoria": "Beleza e Perfumaria",
@@ -74,7 +73,7 @@
         "quantidade_vendida": 20
       },
       {
-        "codigo": 28,
+        "codigo": 19,
         "status": "Ativo",
         "nome": "Ferro de Passar Roupa",
         "categoria": "Eletrodomésticos",
@@ -83,112 +82,13 @@
         "quantidade_vendida": 10
       },
       {
-        "codigo": 29,
+        "codigo": 20,
         "status": "Ativo",
         "nome": "Cadeira de Praia",
         "categoria": "Lazer",
         "preco": 29.99,
         "quantidade_estoque": 120,
         "quantidade_vendida": 35
-      },
-      {
-        "codigo": 30,
-        "status": "Ativo",
-        "nome": "Guarda-chuva Automático",
-        "categoria": "Acessórios",
-        "preco": 19.99,
-        "quantidade_estoque": 80,
-        "quantidade_vendida": 15
-      },
-      {
-        "codigo": 31,
-        "status": "Ativo",
-        "nome": "Copo Térmico",
-        "categoria": "Casa e Decoração",
-        "preco": 14.99,
-        "quantidade_estoque": 50,
-        "quantidade_vendida": 8
-      },
-      {
-        "codigo": 32,
-        "status": "Ativo",
-        "nome": "Conjunto de Panelas Antiaderentes",
-        "categoria": "Culinária",
-        "preco": 79.99,
-        "quantidade_estoque": 60,
-        "quantidade_vendida": 12
-      },
-      {
-        "codigo": 33,
-        "status": "Ativo",
-        "nome": "Jogo de Toalhas de Banho",
-        "categoria": "Cama, Mesa e Banho",
-        "preco": 49.99,
-        "quantidade_estoque": 100,
-        "quantidade_vendida": 20
-      },
-      {
-        "codigo": 34,
-        "status": "Ativo",
-        "nome": "Cadeira de Escritório Ergonômica",
-        "categoria": "Móveis",
-        "preco": 249.99,
-        "quantidade_estoque": 40,
-        "quantidade_vendida": 8
-      },
-      {
-        "codigo": 35,
-        "status": "Ativo",
-        "nome": "Jogo de Copos de Cristal",
-        "categoria": "Casa e Decoração",
-        "preco": 99.99,
-        "quantidade_estoque": 30,
-        "quantidade_vendida": 5
-      },
-      {
-        "codigo": 36,
-        "status": "Ativo",
-        "nome": "Conjunto de Facas Profissionais",
-        "categoria": "Culinária",
-        "preco": 149.99,
-        "quantidade_estoque": 60,
-        "quantidade_vendida": 10
-      },
-      {
-        "codigo": 37,
-        "status": "Ativo",
-        "nome": "Álbum de Fotografias",
-        "categoria": "Papelaria",
-        "preco": 19.99,
-        "quantidade_estoque": 80,
-        "quantidade_vendida": 15
-      },
-      {
-        "codigo": 38,
-        "status": "Ativo",
-        "nome": "Creme Hidratante Corporal",
-        "categoria": "Beleza e Perfumaria",
-        "preco": 29.99,
-        "quantidade_estoque": 100,
-        "quantidade_vendida": 20
-      },
-      {
-        "codigo": 39,
-        "status": "Ativo",
-        "nome": "Alicate de Unha Profissional",
-        "categoria": "Beleza e Perfumaria",
-        "preco": 9.99,
-        "quantidade_estoque": 120,
-        "quantidade_vendida": 25
-      },
-      {
-        "codigo": 40,
-        "status": "Ativo",
-        "nome": "Tábua de Corte de Bambu",
-        "categoria": "Culinária",
-        "preco": 14.99,
-        "quantidade_estoque": 50,
-        "quantidade_vendida": 8
       }
     ]
 }

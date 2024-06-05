@@ -1,6 +1,7 @@
 {
     "produtos": [
       {
+        "imagem": "/src/assets/iphone_14.jpg",
         "codigo": 1,
         "status": "ativo",
         "nome": "iPhone 14 Pro",
@@ -10,6 +11,7 @@
         "quantidade_vendida": 30
       },
       {
+        "imagem": "/src/assets/xbox_series_x.jpg",
         "codigo": 2,
         "status": "ativo",
         "nome": "Xbox Series X",
@@ -19,6 +21,7 @@
         "quantidade_vendida": 45
       },
       {
+        "imagem": "/src/assets/televisao.jpg",
         "codigo": 3,
         "status": "ativo",
         "nome": "Samsung QLED TV 55",
@@ -28,6 +31,7 @@
         "quantidade_vendida": 25
       },
       {
+        "imagem": "/src/assets/nitendo.jpg",
         "codigo": 4,
         "status": "inativo",
         "nome": "Nintendo Switch",
@@ -37,6 +41,7 @@
         "quantidade_vendida": 100
       },
       {
+        "imagem": "/src/assets/ps5.jpg",
         "codigo": 5,
         "status": "ativo",
         "nome": "PS5",
@@ -46,6 +51,7 @@
         "quantidade_vendida": 40
       },
       {
+        "imagem": "/src/assets/ipad.jpg",
         "codigo": 6,
         "status": "ativo",
         "nome": "iPad Pro",
@@ -55,130 +61,54 @@
         "quantidade_vendida": 20
       },
       {
+        "imagem": "/src/assets/iphone_14.jpg",
         "codigo": 7,
         "status": "inativo",
-        "nome": "Phone 15 Pro Max",
+        "nome": "iPhone 15 Pro Max",
         "categoria": "Smartphones",
         "preco": 8000.00,
         "quantidade_estoque": 12,
         "quantidade_vendida": 8
       },
       {
+        "imagem": "/src/assets/controle_ps4.jpg",
         "codigo": 7,
         "status": "ativo",
-        "nome": "Camiseta Polo Masculina",
-        "categoria": "Roupas",
+        "nome": "Controle PS4",
+        "categoria": "Videogames",
         "preco": 59.99,
         "quantidade_estoque": 120,
         "quantidade_vendida": 20
       },
       {
+        "imagem": "/src/assets/controle_ps5.jpg",
         "codigo": 8,
         "status": "ativo",
-        "nome": "Calça Jeans Skinny Feminina",
-        "categoria": "Roupas",
+        "nome": "Controle PS5",
+        "categoria": "Videogames",
         "preco": 99.99,
         "quantidade_estoque": 80,
         "quantidade_vendida": 15
       },
       {
+        "imagem": "/src/assets/teclado_redragon.jpg",
         "codigo": 9,
         "status": "ativo",
-        "nome": "Tênis Adidas UltraBoost",
-        "categoria": "Calçados",
+        "nome": "Teclado Redragon",
+        "categoria": "Informatica",
         "preco": 199.99,
         "quantidade_estoque": 50,
         "quantidade_vendida": 10
       },
       {
+        "imagem": "/src/assets/mouse_razer.jpg",
         "codigo": 10,
         "status": "ativo",
-        "nome": "Bolsa Feminina de Couro",
-        "categoria": "Acessórios",
+        "nome": "Mouse Razer",
+        "categoria": "Informatica",
         "preco": 149.99,
         "quantidade_estoque": 30,
         "quantidade_vendida": 5
-      },
-      {
-        "codigo": 11,
-        "status": "ativo",
-        "nome": "Óculos de Sol Ray-Ban Aviador",
-        "categoria": "Acessórios",
-        "preco": 199.99,
-        "quantidade_estoque": 100,
-        "quantidade_vendida": 25
-      },
-      {
-        "codigo": 12,
-        "status": "ativo",
-        "nome": "Relógio Casio G-Shock",
-        "categoria": "Acessórios",
-        "preco": 299.99,
-        "quantidade_estoque": 60,
-        "quantidade_vendida": 8
-      },
-      {
-        "codigo": 13,
-        "status": "ativo",
-        "nome": "iPhone 13 Pro",
-        "categoria": "Eletrônicos",
-        "preco": 1099.99,
-        "quantidade_estoque": 150,
-        "quantidade_vendida": 30
-      },
-      {
-        "codigo": 14,
-        "status": "ativo",
-        "nome": "iPad Air",
-        "categoria": "Eletrônicos",
-        "preco": 699.99,
-        "quantidade_estoque": 100,
-        "quantidade_vendida": 20
-      },
-      {
-        "codigo": 15,
-        "status": "ativo",
-        "nome": "AirPods Pro",
-        "categoria": "Eletrônicos",
-        "preco": 249.99,
-        "quantidade_estoque": 200,
-        "quantidade_vendida": 40
-      },
-      {
-        "codigo": 16,
-        "status": "ativo",
-        "nome": "Câmera Canon EOS Rebel T7i",
-        "categoria": "Eletrônicos",
-        "preco": 749.99,
-        "quantidade_estoque": 80,
-        "quantidade_vendida": 12
-      },
-      {
-        "codigo": 17,
-        "status": "ativo",
-        "nome": "Livro: O Pequeno Príncipe",
-        "categoria": "Livros",
-        "preco": 29.99,
-        "quantidade_estoque": 200,
-        "quantidade_vendida": 60
-      },
-      {
-        "codigo": 18,
-        "status": "ativo",
-        "nome": "DVD: Forrest Gump",
-        "categoria": "Filmes",
-        "preco": 19.99,
-        "quantidade_estoque": 150,
-        "quantidade_vendida": 30
-      },
-      {
-        "codigo": 19,
-        "status": "ativo",
-        "nome": "Console PlayStation 5",
-        "categoria": "Games",
-        "preco": 499.99,
-        "quantidade_estoque": 50,
-        "quantidade_vendida": 20
       }
     ]
   }
