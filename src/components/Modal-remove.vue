@@ -1,5 +1,8 @@
 <script setup>
 
+const productId = defineProps(["id"])
+const id = productId.id
+
 </script>
 
 <template>
@@ -28,7 +31,9 @@
                         este produto?</h3>
                     <div class="flex justify-center space-x-3">
                         <button data-modal-hide="popup-modal" type="button"
-                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                            @click="deleteProduct(id)"
+                            >
                             Sim, tenho certeza!
                         </button>
                         <button data-modal-hide="popup-modal" type="button"
@@ -41,4 +46,27 @@
     </div>
 </template>
 
-<style scoped></style>
+<script>
+import ProductDataService from "@/services/ProductDataService";
+
+export default {
+  name: "products-delete",
+  methods: {
+    deleteProduct(id){
+        ProductDataService.deleteProduct(id)
+        .then(response => {
+            alert("Produto removido com sucesso")
+            window.location.reload();
+            console.log(response)
+        })
+        .catch(e => {
+            console.log(e);
+        })
+    }
+  }
+}
+
+</script>
+
+<style scoped>
+</style>

@@ -51,11 +51,53 @@
 
         </div>
         <div class="table-mobile">
-
         </div>
 
     </div>
 </template>
+
+<script>
+import PostDataService from "../services/PostDataService"
+
+export default {
+  name: "new-post",
+  data(){
+    return {
+      post: {
+        userId: null,
+        id: null,
+        title: "",
+        body: ""
+      },
+      submitted: false
+    }
+  },
+  methods: {
+    savePost() {
+      var data = {
+        title: this.post.title,
+        body: this.post.body,
+        userId: 1
+      }
+      PostDataService.create(data)
+      .then(response => {
+        this.post.id = response.data.id;
+        console.log(response.data);
+        this.submitted = true;
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    },
+    newPost(){
+    this.submitted = false;
+    this.post = {};
+    }
+  }
+}
+
+</script>
+
 
 <style scoped>
 h1 {
