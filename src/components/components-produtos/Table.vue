@@ -3,10 +3,28 @@ import { ref, onMounted } from 'vue';
 import produtosJson from '@/assets/data/produtos.json';
 import Filter from "@/components/components-produtos/Filter.vue";
 import FilterMobile from "@/components/components-produtos/Filter-mobile.vue";
-import ModalRemove from "@/components/Modal-remove.vue";
-import ModalEdit from "@/components/Modal-edit.vue";
-import Pagination from "@/components/Pagination.vue";
 
+import Pagination from "@/components/Pagination.vue";
+import { FwbButton, FwbModal } from 'flowbite-vue'
+
+
+const isShowModalEdit = ref(false)
+
+function closeModalEdit() {
+    isShowModalEdit.value = false
+}
+function showModalEdit() {
+    isShowModalEdit.value = true
+}
+
+const isShowModalRemove = ref(false)
+
+function closeModalRemove() {
+    isShowModalRemove.value = false
+}
+function showModalRemove() {
+    isShowModalRemove.value = true
+}
 
 var idSelecionado = ref();
 // const produtos = ref([]);
@@ -19,6 +37,7 @@ var idSelecionado = ref();
 // function atualizaPreco(event) {
 //     preco.value = event.target.value;
 // }
+
 
 </script>
 
@@ -36,7 +55,7 @@ var idSelecionado = ref();
             <table class="table w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        
+
                         <th scope="col" class="px-6 py-3"></th>
                         <th scope="col" class="px-6 py-3">Código</th>
                         <th scope="col" class="px-6 py-3">Nome</th>
@@ -50,11 +69,11 @@ var idSelecionado = ref();
                 <tbody class="">
                     <tr v-for="(product, index) in products" :key="index"
                         class="bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        
+
 
                         <td class="px-6 py-4">
-                            <img class="w-12 mx-auto md:w-32 max-w-full max-h-full" :src="product.image ?? '/public/defaultNoImage.png'"
-                             :alt="product.nome">
+                            <img class="w-12 mx-auto md:w-32 max-w-full max-h-full"
+                                :src="product.image ?? '/public/defaultNoImage.png'" :alt="product.nome">
                         </td>
 
                         <td class=" font-medium text-gray-900 dark:text-white">{{ product.id }}</td>
@@ -70,7 +89,7 @@ var idSelecionado = ref();
                         <td class="">{{ product.estoque }}</td>
                         <td class="acoes">
                             <RouterLink to="#" class="font-medium w text-blue-600 dark:text-blue-500 hover:underline">
-                                <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button">
+                                <fwb-button @click="showModalEdit" class="bg-transparent hover:bg-transparent focus:ring-0">
                                     <svg class="w-6 h-6  text-gray-800 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
@@ -78,20 +97,118 @@ var idSelecionado = ref();
                                             stroke-width="2"
                                             d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
                                     </svg>
-                                </button>
-                                <ModalEdit />
+                                </fwb-button>
+                                <fwb-modal persistent class="custom-modal" v-if="isShowModalEdit" @close="closeModalEdit">
+                                    <template #header>
+                                        <div class="flex items-center text-lg">
+                                            Editar produto
+                                        </div>
+                                    </template>
+
+                                    <template #body class="">
+                                        <div>
+                                            <label for="nome"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                Nome</label>
+                                            <input type="text" id="nome"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Iphone" required />
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <label for="status"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                            <select id="status"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option selected>Selecionar status</option>
+                                                <option>Ativo</option>
+                                                <option>Inativo</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <label for="categoria"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
+                                            <select id="categoria"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option selected>Selecionar categoria</option>
+                                                <option>Televisores</option>
+                                                <option>Informatica</option>
+                                                <option>Eletronicos</option>
+                                                <option>Celulares</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <label for="preco"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preço</label>
+                                            <input type="number" id="preco" aria-describedby="helper-text-explanation"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="90210" required />
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <label for="qtd-vendida"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade
+                                                vendida</label>
+                                            <input type="number" id="number-input"
+                                                aria-describedby="helper-text-explanation"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="90210" required />
+                                        </div>
+
+                                    </template>
+                                    <template #footer>
+                                        <div class="flex justify-between">
+                                            <fwb-button @click="closeModalEdit" color="alternative">
+                                                Cancelar
+                                            </fwb-button>
+                                            <fwb-button @click="closeModalEdit" color="blue">
+                                                Salvar
+                                            </fwb-button>
+                                        </div>
+                                    </template>
+                                </fwb-modal>
                             </RouterLink>
-                            <RouterLink to="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">
-                                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button">
-                                    <svg class="w-6 h-6 text-red-100 dark:text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
+                            <RouterLink to="#" class="font-medium  dark:text-blue-500 hover:underline">
+                                <fwb-button @click="showModalRemove" class="bg-transparent hover:bg-transparent focus:ring-0">
+                                    <svg class="w-6 h-6 text-red-600 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2"
                                             d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
                                     </svg>
+
+                                </fwb-button>
+                                <fwb-modal persistent class="custom-modal" v-if="isShowModalRemove" @close="closeModalRemove">
+                                    <template #header>
+                                        <div class="flex items-center text-lg text-red-600">
+                                            Remover produto
+                                        </div>
+                                    </template>
+
+                                    <template #body >
+                                        <div class="flex items-center text-2xl justify-center align-center text-gray-900">
+                                            <h1 class="m-0">Tem certeza que deseja remover esse produto?</h1>
+                                        </div>
+
+                                    </template>
+                                    <template #footer>
+                                        <div class="flex justify-between">
+                                            <fwb-button @click="closeModalRemove" color="alternative">
+                                                Cancelar
+                                            </fwb-button>
+                                            <fwb-button @click="closeModalRemove" color="red">
+                                                Sim, remover!
+                                            </fwb-button>
+                                        </div>
+                                    </template>
+                                </fwb-modal>
+                                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button">
+
                                 </button>
-                                <ModalRemove :id="product.id"/>
+                                <ModalRemove :id="product.id" />
                             </RouterLink>
                         </td>
                     </tr>
@@ -107,42 +224,45 @@ var idSelecionado = ref();
 import ProductDataService from "@/services/ProductDataService";
 
 export default {
-  name: "products-list",
-  data(){
-    return {
-      products: []
-    };
-  },
-  methods: {
-    retrieveProducts(){
-      ProductDataService.getAll()
-      .then(response => {
-        this.products = response.data.data;
-        console.log(response.data)
-      })
-      .catch(e => {
-        console.log(e);
-      })
+    name: "products-list",
+    data() {
+        return {
+            products: []
+        };
+    },
+    methods: {
+        retrieveProducts() {
+            ProductDataService.getAll()
+                .then(response => {
+                    this.products = response.data.data;
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+    },
+    mounted() {
+        this.retrieveProducts();
     }
-  },
-  mounted(){
-    this.retrieveProducts();
-  }
 }
 
 </script>
 
 <style scoped>
-.acoes{
+
+
+.acoes {
     margin-top: 3.5rem;
     display: flex;
     align-items: flex-start;
     justify-content: center;
 }
 
-img{
+img {
     width: 7rem;
 }
+
 .content {
     width: 100%;
     margin: auto;
