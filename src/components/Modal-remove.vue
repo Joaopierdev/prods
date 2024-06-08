@@ -1,8 +1,5 @@
 <script setup>
 
-const productId = defineProps(["id"])
-const id = productId.id
-
 </script>
 
 <template>
@@ -31,14 +28,11 @@ const id = productId.id
                         este produto?</h3>
                     <div class="flex justify-center space-x-3">
                         <button data-modal-hide="popup-modal" type="button"
-                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
-                            @click="deleteProduct(id)"
-                            >
+                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                             Sim, tenho certeza!
                         </button>
                         <button data-modal-hide="popup-modal" type="button"
-                            class="close-modal py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Não,
-                            
+                            class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Não,
                             cancelar!</button>
                     </div>
                 </div>
@@ -47,27 +41,4 @@ const id = productId.id
     </div>
 </template>
 
-<script>
-import ProductDataService from "@/services/ProductDataService";
-
-export default {
-  name: "products-delete",
-  methods: {
-    deleteProduct(id){
-        ProductDataService.deleteProduct(id)
-        .then(response => {
-            alert("Produto removido com sucesso")
-            window.location.reload();
-            console.log(response)
-        })
-        .catch(e => {
-            console.log(e);
-        })
-    }
-  }
-}
-
-</script>
-
-<style scoped>
-</style>
+<style scoped></style>
