@@ -5,7 +5,6 @@ import CategoriasView from '../views/CategoriasView.vue'
 import CadastroCategoriaView from '../views/CadastrarCategoriaView.vue'
 import UsuariosView from '../views/UsuariosView.vue'
 import CadastroUsuarioView from '../views/CadastrarUsuarioView.vue'
-import Login from '../views/Login.vue'
 
 
 
@@ -42,14 +41,6 @@ const router = createRouter({
       path: '/usuarios/cadastrar',
       name: 'cadastrar usuarios',
       component: CadastroUsuarioView
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login,
-      meta: {
-        hideNavbar: true
-      },
     }
   ]
 })

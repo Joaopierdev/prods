@@ -4,12 +4,11 @@
 </script>
 
 <template>
-  <side v-if="!$route.meta.hideNavbar"/>
+  <side/>
 
-  
   <router-view/>
 
-  <rodape v-if="!$route.meta.hideNavbar"/>
+  <rodape/>
 </template>
 
 <style>
