@@ -1,5 +1,5 @@
 <script setup>
-import Filter from '@/components/components-categorias/Filter-Categorias.vue';
+import Filter from '@/components/components-categorias/Filter-categorias.vue';
 import Pagination from '@/components/Pagination.vue';
 import { ref, onMounted } from 'vue';
 import { FwbButton, FwbModal } from 'flowbite-vue'
