@@ -4,7 +4,7 @@
 
 <template>
     <main>
-        <ContentCategorias />
+        <ContentCategorias/>
     </main>
 </template>
 

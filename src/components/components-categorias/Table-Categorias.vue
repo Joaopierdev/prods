@@ -1,17 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import categoriasJson from '@/assets/data-categoria/categorias.json';
 import Filter from '@/components/components-categorias/Filter-Categorias.vue';
 import ModalRemove from "@/components/Modal-remove.vue";
 import ModalEdit from "@/components/Modal-edit.vue";
 import Pagination from '@/components/Pagination.vue';
-
-const categorias = ref([]);
-
-onMounted(() => {
-    categorias.value = categoriasJson.categorias;
-});
-
 </script>
 
 <template>
@@ -22,7 +13,7 @@ onMounted(() => {
         <div class="overflow-x-auto ">
         </div>
         <div class="relative overflow-x-auto border-solid border-2 border-indigo-600 sm:rounded-lg shadow-lg mt-6">
-            <table class=" table w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table class="table w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                        
@@ -33,20 +24,20 @@ onMounted(() => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="categoria in categorias" :key="categoria.codigo"
+                    <tr v-for="(category, index) in categories" :key="index"
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ categoria.codigo }}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ categoria.nome }}</td>
-                        <td class="mx-6 my-4">
-                            <div style="" class="mx-4" :class="categoria.status === 'ativo' ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800  rounded-full dark:bg-red-900 dark:text-red-300'">
-                                {{ categoria.status }}
+                        <td class="font-medium text-gray-900 dark:text-white">{{ category.id }}</td>
+                        <td class="font-medium text-gray-900 dark:text-white">{{ category.nome }}</td>
+                        <td class="">
+                            <div style="" class="mx-4" :class="category.status === true ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800  rounded-full dark:bg-red-900 dark:text-red-300'">
+                                {{ category.status }}
                             </div>
                         </td>
                         <td class="flex items-center justify-center px-6 py-4">
                             <RouterLink to="#" class="font-medium w text-blue-600 dark:text-blue-500 hover:underline">
                                 <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button">
-                                    <svg class="w-6 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -58,27 +49,59 @@ onMounted(() => {
                             </RouterLink>
                             <RouterLink to="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">
                                 <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button">
-                                    <svg class="w-4 h-4 text-red-100 dark:text-white" aria-hidden="true"
+                                    <svg class="w-6 h-6 text-red-100 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
                                         viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2"
-                                            d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                                            d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
                                     </svg>
                                 </button>
-                                <ModalRemove />
+                                <ModalRemove :id="category.id" />
                             </RouterLink>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
         </div>
         <Pagination />
     </main>
 </template>
 
+
+<script>
+import CategoriesDataService from "@/services/CategoryDataService";
+
+export default {
+  name: "categories-list",
+  data(){
+    return {
+      categories: []
+    };
+  },
+  methods: {
+    retrieveCategories(){
+      CategoriesDataService.getAll()
+      .then(response => {
+        this.categories = response.data;
+        console.log(response.data)
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    }
+  },
+  mounted(){
+    this.retrieveCategories();
+  }
+}
+
+</script>
+
+
 <style scoped>
+
+
 .content {
     width: 100%;
     margin: auto;

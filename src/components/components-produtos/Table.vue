@@ -47,9 +47,9 @@ var idSelecionado = ref();
                         <th scope="col" class="px-6 py-3">Ações</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="">
                     <tr v-for="(product, index) in products" :key="index"
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        class="bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         
 
                         <td class="px-6 py-4">
@@ -61,17 +61,17 @@ var idSelecionado = ref();
                         <td class=" font-medium text-gray-900 dark:text-white">{{ product.nome }}</td>
                         <td class="mx-6 my-4">
                             <div style="" class="mx-4"
-                                :class="product.status === true ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800  rounded-full dark:bg-red-900 dark:text-red-300'">
+                                :class="product.status === true ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 rounded-full dark:bg-red-900 dark:text-red-300'">
                                 {{ product.status }}
                             </div>
                         </td>
                         <td class="">{{ product.categoria.nome }}</td>
                         <td class="">R${{ product.preco }}</td>
                         <td class="">{{ product.estoque }}</td>
-                        <td class="justify-center flex">
+                        <td class="acoes">
                             <RouterLink to="#" class="font-medium w text-blue-600 dark:text-blue-500 hover:underline">
                                 <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button">
-                                    <svg class="w-6 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                    <svg class="w-6 h-6  text-gray-800 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -83,7 +83,7 @@ var idSelecionado = ref();
                             </RouterLink>
                             <RouterLink to="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">
                                 <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button">
-                                    <svg class="w-4 h-4 text-red-100 dark:text-white" aria-hidden="true"
+                                    <svg class="w-6 h-6 text-red-100 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
                                         viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -133,6 +133,12 @@ export default {
 </script>
 
 <style scoped>
+.acoes{
+    margin-top: 3.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
 
 img{
     width: 7rem;

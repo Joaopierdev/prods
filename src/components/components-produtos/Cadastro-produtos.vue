@@ -1,12 +1,12 @@
 <script setup>
     import { ref, onMounted } from 'vue';
-    import categoriasJson from '@/assets/data-categoria/categorias.json';
+    // import categoriasJson from '@/assets/data-categoria/categorias.json';
 
-    const categorias = ref([]);
+    // const categorias = ref([]);
 
-    onMounted(() => {
-        categorias.value = categoriasJson.categorias;
-    });
+    // onMounted(() => {
+    //     categorias.value = categoriasJson.categorias;
+    // });
 </script>
 
 <template>
