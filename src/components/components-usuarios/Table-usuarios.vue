@@ -19,16 +19,6 @@ function closeModalRemove() {
 function showModalRemove() {
     isShowModalRemove.value = true
 }
-// const produtos = ref([]);
-// const preco = ref(0);
-
-// onMounted(() => {
-//     produtos.value = produtosJson.produtos;
-// });
-
-// function atualizaPreco(event) {
-//     preco.value = event.target.value;
-// }
 
 </script>
 
