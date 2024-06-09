@@ -1,6 +1,7 @@
 <script setup>
-    import { ref, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import produtosJson from '@/assets/data/produtos.json';
+import ListaCategorias from "@/components/components-categorias/Listar-Categorias.vue"
 
 const produtos = ref([]);
 const preco = ref(0);
@@ -47,15 +48,13 @@ function atualizaPreco(event) {
                     </label>
                     <select id="status"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                        <option>Televisores</option>
-                        <option>Informática</option>
-                        <option>Eletronicos</option>
-                        <option>Videogames</option>
-                        <option>Acessórios</option>
+                        <option selected>Selecione</option>
+                        <ListaCategorias />
                     </select>
                 </div>
                 <div class="flex flex-col sm:flex-row justify-between items-center">
                     <button
+                    @click="searchProducts()"
                         class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                         Filtrar
                     </button>
@@ -64,6 +63,33 @@ function atualizaPreco(event) {
         </div>
     </main>
 </template>
+
+<script>
+import ProductDataService from "@/services/ProductDataService";
+
+export default {
+    name: "products-list",
+    data() {
+        return {
+            products: []
+        };
+    },
+    methods: {
+        searchProducts() {
+            ProductDataService.getAll(NomeProduto="string")
+                .then(response => {
+                    this.products = response.data.data;
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+    }
+}
+
+
+</script>
 
 <style scoped>
      .content {
