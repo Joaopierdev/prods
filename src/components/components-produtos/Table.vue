@@ -3,22 +3,29 @@ import { ref, onMounted } from 'vue';
 import produtosJson from '@/assets/data/produtos.json';
 import Filter from "@/components/components-produtos/Filter.vue";
 import FilterMobile from "@/components/components-produtos/Filter-mobile.vue";
-import ModalRemove from "@/components/Modal-remove.vue";
-import ModalEdit from "@/components/Modal-edit.vue";
+import ModalEdit from "@/components/components-produtos/Modal-edit-produtos.vue";
+import ModalRemove from "@/components/components-produtos/Modal-remove-produtos.vue";
 import Pagination from "@/components/Pagination.vue";
+import { FwbButton, FwbModal } from 'flowbite-vue'
 
 
-var idSelecionado = ref();
-// const produtos = ref([]);
-// const preco = ref(0);
+const isShowModalEdit = ref(false)
 
-// onMounted(() => {
-//     produtos.value = produtosJson.produtos;
-// });
+function closeModalEdit() {
+    isShowModalEdit.value = false
+}
+function showModalEdit() {
+    isShowModalEdit.value = true
+}
 
-// function atualizaPreco(event) {
-//     preco.value = event.target.value;
-// }
+const isShowModalRemove = ref(false)
+
+function closeModalRemove() {
+    isShowModalRemove.value = false
+}
+function showModalRemove() {
+    isShowModalRemove.value = true
+}
 
 </script>
 
@@ -36,7 +43,7 @@ var idSelecionado = ref();
             <table class="table w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        
+
                         <th scope="col" class="px-6 py-3"></th>
                         <th scope="col" class="px-6 py-3">Código</th>
                         <th scope="col" class="px-6 py-3">Nome</th>
@@ -50,11 +57,11 @@ var idSelecionado = ref();
                 <tbody class="">
                     <tr v-for="(product, index) in products" :key="index"
                         class="bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        
+
 
                         <td class="px-6 py-4">
-                            <img class="w-12 mx-auto md:w-32 max-w-full max-h-full" :src="product.image ?? '/public/defaultNoImage.png'"
-                             :alt="product.nome">
+                            <img class="w-12 mx-auto md:w-32 max-w-full max-h-full"
+                                :src="product.image ?? '/public/defaultNoImage.png'" :alt="product.nome">
                         </td>
 
                         <td class=" font-medium text-gray-900 dark:text-white">{{ product.id }}</td>
@@ -69,30 +76,8 @@ var idSelecionado = ref();
                         <td class="">R${{ product.preco }}</td>
                         <td class="">{{ product.estoque }}</td>
                         <td class="acoes">
-                            <RouterLink to="#" class="font-medium w text-blue-600 dark:text-blue-500 hover:underline">
-                                <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button">
-                                    <svg class="w-6 h-6  text-gray-800 dark:text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
-                                    </svg>
-                                </button>
-                                <ModalEdit />
-                            </RouterLink>
-                            <RouterLink to="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">
-                                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button">
-                                    <svg class="w-6 h-6 text-red-100 dark:text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
-                                    </svg>
-                                </button>
-                                <ModalRemove :id="product.id"/>
-                            </RouterLink>
+                            <ModalEdit />
+                            <ModalRemove :id="product.id"/>
                         </td>
                     </tr>
                 </tbody>
@@ -107,42 +92,45 @@ var idSelecionado = ref();
 import ProductDataService from "@/services/ProductDataService";
 
 export default {
-  name: "products-list",
-  data(){
-    return {
-      products: []
-    };
-  },
-  methods: {
-    retrieveProducts(){
-      ProductDataService.getAll()
-      .then(response => {
-        this.products = response.data.data;
-        console.log(response.data)
-      })
-      .catch(e => {
-        console.log(e);
-      })
+    name: "products-list",
+    data() {
+        return {
+            products: []
+        };
+    },
+    methods: {
+        retrieveProducts() {
+            ProductDataService.getAll()
+                .then(response => {
+                    this.products = response.data.data;
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+    },
+    mounted() {
+        this.retrieveProducts();
     }
-  },
-  mounted(){
-    this.retrieveProducts();
-  }
 }
 
 </script>
 
 <style scoped>
-.acoes{
+
+
+.acoes {
     margin-top: 3.5rem;
     display: flex;
     align-items: flex-start;
     justify-content: center;
 }
 
-img{
+img {
     width: 7rem;
 }
+
 .content {
     width: 100%;
     margin: auto;
