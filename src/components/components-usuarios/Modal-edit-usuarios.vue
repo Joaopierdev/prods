@@ -1,7 +1,6 @@
 <script setup>
+
 import { ref } from 'vue';
-
-
 import { FwbButton, FwbModal } from 'flowbite-vue'
 
 
@@ -13,11 +12,14 @@ function closeModalEdit() {
 function showModalEdit() {
     isShowModalEdit.value = true
 }
+
+
+
 </script>
 
 <template>
-    <RouterLink to="#" class="flex font-medium w text-blue-600 dark:text-blue-500 hover:underline h-36">
-        <fwb-button @click="showModalEdit" class="bg-transparent hover:bg-transparent focus:ring-0 ">
+    <RouterLink to="#" class="font-medium w text-blue-600 dark:text-blue-500 hover:underline">
+        <fwb-button @click="showModalEdit" class="bg-transparent hover:bg-transparent focus:ring-0">
             <svg class="w-6 h-6  text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -27,7 +29,7 @@ function showModalEdit() {
         <fwb-modal persistent class="custom-modal" v-if="isShowModalEdit" @close="closeModalEdit">
             <template #header>
                 <div class="flex items-center text-lg">
-                    Editar produto
+                    Editar usuário
                 </div>
             </template>
 
@@ -41,45 +43,24 @@ function showModalEdit() {
                 </div>
 
                 <div class="mt-4">
-                    <label for="status"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                    <select id="status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Selecionar status</option>
-                        <option>Ativo</option>
-                        <option>Inativo</option>
-                    </select>
-                </div>
-
-                <div class="mt-4">
-                    <label for="categoria"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
-                    <select id="categoria"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Selecionar categoria</option>
-                        <option>Televisores</option>
-                        <option>Informatica</option>
-                        <option>Eletronicos</option>
-                        <option>Celulares</option>
-                    </select>
-                </div>
-
-                <div class="mt-4">
-                    <label for="preco"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preço</label>
-                    <input type="number" id="preco" aria-describedby="helper-text-explanation"
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Email</label>
+                    <input type="text" id="email"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="90210" required />
+                        placeholder="Iphone" required />
                 </div>
 
                 <div class="mt-4">
-                    <label for="qtd-vendida"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade
-                        vendida</label>
-                    <input type="number" id="number-input" aria-describedby="helper-text-explanation"
+                    <label for="funcao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Função</label>
+                    <input type="text" id="funcao"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="90210" required />
+                        placeholder="Iphone" required />
                 </div>
+
+                
+
+                
 
             </template>
             <template #footer>

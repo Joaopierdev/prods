@@ -2,7 +2,11 @@
 import { ref, onMounted } from 'vue';
 import Pagination from '@/components/Pagination.vue';
 import { FwbButton, FwbModal } from 'flowbite-vue'
+import ModalEditUsuarios from "@/components/components-usuarios/Modal-edit-usuarios.vue";
+import ModalRemoveUsuarios from "@/components/components-usuarios/Modal-remove-usuarios.vue";
 const isShowModalEdit = ref(false)
+
+
 
 function closeModalEdit() {
     isShowModalEdit.value = false
@@ -25,7 +29,7 @@ function showModalRemove() {
     <main class="content">
         <div class="overflow-x-auto ">
         </div>
-        <div class="relative p-2 overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative  overflow-x-auto shadow-md sm:rounded-lg">
             <div
                 class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
                 <label for="table-search" class="sr-only">Search</label>
@@ -56,10 +60,10 @@ function showModalRemove() {
                         <th scope="col" class="px-6 py-3">
                             Função
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             Status
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             Ação
                         </th>
                     </tr>
@@ -68,32 +72,32 @@ function showModalRemove() {
                     <tr v-for="(user, index) in users" :key="index"
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            <img class="w-12 mx-auto md:w-32 max-w-full max-h-full"
+                            <img class="w-12 mx-auto md:w-32 max-w-full max-h-full rounded-full"
                                 :src="user.imagem ?? '/public/defaultNoImage.png'" :alt="user.nome">
                         </td>
                         <td class="px-6 py-4">
-                            <div class="ps-3">
+                            <div class="">
                                 <div class="font-normal text-gray-900">{{ user.nome }}</div>
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <div class="ps-3">
+                            <div class="">
                                 <div class="font-normal text-gray-900">{{  user.email  }}</div>
                             </div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="font-normal text-gray-900">{{ user.cargo }}</div>
                         </td>
-                        <td class="px-6 py-4">
-                            <div class=""
+                        <td class="px-6 py-4 text-center">
+                            <div class=" text-center w-20 mx-auto"
                                 :class="user.status === true ? 'bg-green-100 text-gray-900 rounded-full' : 'bg-red-100 text-red-800 rounded-full'">
-                                {{ user.status }}
+                                {{ user.status ? 'Ativo' : 'Inativo' }}
                             </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 flex justify-center">
                             <!-- Modal toggle -->
-                            <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
+                            <ModalEditUsuarios/>
+                            <ModalRemoveUsuarios/>
                         </td>
                     </tr>
                 </tbody>

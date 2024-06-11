@@ -5,6 +5,8 @@ import Filter from "@/components/components-produtos/Filter.vue";
 import FilterMobile from "@/components/components-produtos/Filter-mobile.vue";
 import ModalEdit from "@/components/components-produtos/Modal-edit-produtos.vue";
 import ModalRemove from "@/components/components-produtos/Modal-remove-produtos.vue";
+import ListaCategorias from "@/components/components-categorias/Listar-Categorias.vue";
+
 import Pagination from "@/components/Pagination.vue";
 import { FwbButton, FwbModal } from 'flowbite-vue'
 
@@ -59,10 +61,10 @@ function showModalRemove() {
                         </div>
 
                         <div class="flex flex-col w-full sm:w-1/2">
-                            <label for="status" class="block text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="categoria" class="block text-sm font-medium text-gray-900 dark:text-white">
                                 Categoria
                             </label>
-                            <select id="status"
+                            <select id="categoria"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                 <option selected>Selecione</option>
                                 <ListaCategorias />
@@ -70,7 +72,6 @@ function showModalRemove() {
                         </div>
                         <div class="flex flex-col sm:flex-row justify-between items-center">
                             <button
-                            
                                 class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                 Filtrar
                             </button>
@@ -114,13 +115,13 @@ function showModalRemove() {
                         <td class="mx-6 my-4">
                             <div style="" class="mx-4"
                                 :class="product.status === true ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 rounded-full dark:bg-red-900 dark:text-red-300'">
-                                {{ product.status }}
+                                {{ product.status  ? 'Ativo' : 'Inativo' }}
                             </div>
                         </td>
                         <td class="">{{ product.categoria.nome }}</td>
                         <td class="">R${{ product.preco }}</td>
                         <td class="">{{ product.estoque }}</td>
-                        <td class="acoes">
+                        <td class="acoes flex items-center justify-center">
                             <ModalEdit />
                             <ModalRemove :id="product.id"/>
                         </td>
@@ -166,14 +167,15 @@ export default {
 
 
 .acoes {
-    margin-top: 3.5rem;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
 }
 
 img {
     width: 7rem;
+    display: block;
+    margin: auto;
 }
 
 .content {

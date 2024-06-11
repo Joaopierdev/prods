@@ -1,11 +1,11 @@
 <script setup>
-import Filter from '@/components/components-categorias/Filter-Categorias.vue';
+
 import Pagination from '@/components/Pagination.vue';
 import { ref, onMounted } from 'vue';
-import { FwbButton, FwbModal } from 'flowbite-vue'
 import ModalEditCategorias from "@/components/components-categorias/Modal-edit-categorias.vue";
 import ModalRemoveCategorias from "@/components/components-categorias/Modal-remove-categorias.vue";
 import ModalDescriptionCategorias from "@/components/components-categorias/Modal-description-categorias.vue";
+import Filter from '@/components/components-categorias/Filter-Categorias.vue';
 
 const isShowModalEdit = ref(false)
 
@@ -46,11 +46,10 @@ function showModalDescription() {
             <table class="table w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-
-                        <th scope="col" class="px-6 py-3">Código</th>
-                        <th scope="col" class="px-6 py-3">Nome</th>
-                        <th scope="col" class="px-6 py-3">Status</th>
-                        <th scope="col" class="px-6 py-3">Ações</th>
+                        <th scope="col" class="px-6 py-3" style="width: 5%;" >Código</th>
+                        <th scope="col" class="px-6 py-3" style="width: 30%;">Nome</th>
+                        <th scope="col" class="px-6 py-3" style="width: 10%;">Status</th>
+                        <th scope="col" class="px-6 py-3" style="width: 25%;">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +61,7 @@ function showModalDescription() {
                         <td class="">
                             <div style="" class="mx-4"
                                 :class="category.status === true ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800  rounded-full dark:bg-red-900 dark:text-red-300'">
-                                {{ category.status }}
+                                {{ category.status  ? 'Ativo' : 'Inativo' }}
                             </div>
                         </td>
                         <td class="flex items-center justify-center px-6 py-4">

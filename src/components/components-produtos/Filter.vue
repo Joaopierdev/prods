@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import produtosJson from '@/assets/data/produtos.json';
 import ListaCategorias from "@/components/components-categorias/Listar-Categorias.vue"
 
+
 const produtos = ref([]);
 const preco = ref(0);
 

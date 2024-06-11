@@ -66,7 +66,7 @@
                             placeholder="*********" required />
                     </div>
                     <div class="botoes">
-                        <button type="button" @click="saveUser()" class="salva-produto text-white bg-green-700 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-900 font-medium rounded-lg text-md sm:w-auto px-5 py-2.5 text-center">Salvar categoria</button>
+                        <button type="button" @click="saveUser()" class="salva-produto text-white bg-green-700 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-900 font-medium rounded-lg text-md sm:w-auto px-5 py-2.5 text-center">Salvar usuário</button>
                         <RouterLink to="/usuarios"><button type="button"  class="cancela-produto text-white bg-red-700 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-900 font-medium rounded-lg text-md sm:w-auto px-5 py-2.5 text-center">Cancelar inclusão</button></RouterLink>
                     </div>
                 </div>
