@@ -41,6 +41,9 @@
     </main>
 </template>
 
+
+
+
 <style scoped>
      .content {
   width: 100%;

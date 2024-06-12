@@ -38,7 +38,38 @@ function showModalDescription() {
 <template>
     <main class="content">
         <class class="filter-desktop">
-            <Filter />
+            <main class="content border-solid border-2 border-gray-200 shadow-lg rounded-lg">
+                <div class="overflow-x-auto">
+                    <form class="filter flex flex-col lg:flex-row sm:space-x-4 max-w-sm mx-auto my-4" @submit.prevent="retrieveCategories()">
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="default-input" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
+                            <input type="text" id="default-input"
+                                v-model="filter.nome"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Nome do produto">
+                        </div>
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="status" class="block text-sm font-medium text-gray-900 dark:text-white">
+                                Status
+                            </label>
+                            <select id="status"
+                                v-model="filter.status"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <option>Selecione</option>
+                                <option>Ativo</option>
+                                <option>Inativo</option>
+                            </select>
+                        </div>
+
+                        
+                        <div class="flex flex-col sm:flex-row justify-between items-center">
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                Filtrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </main>
         </class>
         <div class="overflow-x-auto ">
         </div>
@@ -55,7 +86,6 @@ function showModalDescription() {
                 <tbody>
                     <tr v-for="(category, index) in categories" :key="index"
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
                         <td class="font-medium text-gray-900 dark:text-white">{{ category.id }}</td>
                         <td class="font-medium text-gray-900 dark:text-white">{{ category.nome }}</td>
                         <td class="">
@@ -85,14 +115,18 @@ export default {
     name: "categories-list",
     data() {
         return {
-            categories: []
+            categories: [],
+            filter: {
+                nome: "",
+                status: null
+            }
         };
     },
     methods: {
         retrieveCategories() {
-            CategoriesDataService.getAll()
+            CategoriesDataService.getAll(this.filter.nome, this.filter.status)
                 .then(response => {
-                    this.categories = response.data;
+                    this.categories = response.data.data;
                     console.log(response.data)
                 })
                 .catch(e => {

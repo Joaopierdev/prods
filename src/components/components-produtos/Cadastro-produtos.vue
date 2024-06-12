@@ -28,6 +28,7 @@ import ListaCategorias from "@/components/components-categorias/Listar-Categoria
                 <div class="produto-categoria">
                     <label for="produto-categoria" class="block mb-2 mt-7 text-lg font-bold text-gray-900">Categoria</label>
                     <select id="produto-categoria"
+                    v-model="category"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option id="produto-opcoes" selected> Selecione </option>
                         <ListaCategorias />
@@ -35,7 +36,7 @@ import ListaCategorias from "@/components/components-categorias/Listar-Categoria
                 </div>  
                 <div class="produto-imagem">
                     <label for="produto-imagem" class="block mb-2 mt-7 text-lg font-bold text-gray-900">Imagem</label>
-                    <input type="text" for="produto-imagem" v-model="product.imagem" id="produto-imagem" class="bg-gray-50 border border-gray-300 text-gray-900 text-md font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjEOHapiwNsbqcfFVWp4AC39SLAzW5arXCvg&s" required />
+                    <input type="text" for="produto-imagem" v-model="product.imagem" id="produto-imagem" class="bg-gray-50 border border-gray-300 text-gray-900 text-md font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjEOHapiwNsbqcfFVWp4AC39SLAzW5arXCvg&s"/>
                 </div>
                 <div class="produto-preco">
                     <label for="produto-preco" class="block mb-2 mt-7 text-lg font-bold text-gray-900">Preço</label>
@@ -51,12 +52,12 @@ import ListaCategorias from "@/components/components-categorias/Listar-Categoria
                 <div class="produto-estoque">
                     <label for="produto-estoque" class="block mb-2 mt-7 text-lg font-bold text-gray-900">Estoque</label>
                     <div class="relative flex items-center max-w-[8rem]">
-                        <input type="number" id="produto-nome" v-model="product.preco" class="bg-gray-50 border border-gray-300 text-gray-900 text-md font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0" required />
+                        <input type="number" id="produto-estoque" v-model="product.estoque" class="bg-gray-50 border border-gray-300 text-gray-900 text-md font-semibold rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0" required />
                     </div>
                 </div>
             </div>
             <div class="botoes">
-                <button type="submit" class="salva-produto text-white bg-green-700 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-900 font-medium rounded-lg text-md sm:w-auto px-5 py-2.5 text-center">Salvar produto</button>
+                <button type="button" @click="saveProduct()" class="salva-produto text-white bg-green-700 hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-900 font-medium rounded-lg text-md sm:w-auto px-5 py-2.5 text-center">Salvar produto</button>
                 <RouterLink to="/"><button type="button"  class="cancela-produto text-white bg-red-700 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-900 font-medium rounded-lg text-md sm:w-auto px-5 py-2.5 text-center">Cancelar inclusão</button></RouterLink>
             </div>
         </form>
@@ -74,29 +75,31 @@ export default {
             status: false,
             nome: "",
             descricao: "",
-            imagem: null,
+            imagem: "",
             preco: "",
             estoque: ""
+            },
+        category: 0
             }
-        }
     },
 
     methods: {
         saveProduct() {
-        var dataProduct = {
-            status: dataProduct.product.status,
-            nome: dataProduct.product.nome,
-            descricao: dataProduct.product.descricao,
-            imagem: dataProduct.product.imagem,
-            preco: dataProduct.product.preco,
-            estoque: dataProduct.product.estoque
+        var product = {
+            status: this.product.status,
+            nome: this.product.nome,
+            descricao: this.product.descricao,
+            imagem: this.product.imagem,
+            preco: this.product.preco,
+            estoque: this.product.estoque
         }
+        var category = this.category
 
-        console.log(dataProduct);
-        ProductDataService.create(dataProduct)
+        console.log(product)
+        ProductDataService.create(product, category)
         .then(response => {
-            this.product.id = response.product.id;
             alert("Produto cadastrado com sucesso");
+            window.location.href="/"
             console.log(response.data);
         })
         .catch(e => {

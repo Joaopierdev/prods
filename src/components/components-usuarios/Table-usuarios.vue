@@ -30,22 +30,48 @@ function showModalRemove() {
         <div class="overflow-x-auto ">
         </div>
         <div class="relative  overflow-x-auto shadow-md sm:rounded-lg">
-            <div
-                class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
-                <label for="table-search" class="sr-only">Search</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </div>
-                    <input type="text" id="table-search-users"
-                        class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search for users">
+            <class class="filter-desktop">
+            <main class="content border-solid border-2 border-gray-200 shadow-lg rounded-lg">
+                <div class="overflow-x-auto">
+                    <form class="filter flex flex-col lg:flex-row sm:space-x-4 max-w-sm mx-auto my-4" @submit.prevent="retrieveUsers()">
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="default-input"
+                                class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Apelido:</label>
+                            <input type="text" id="default-input" 
+                                v-model="filter.apelido"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                                placeholder="joao.silva">
+                        </div>
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="default-input"
+                                class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">E-mail:</label>
+                            <input type="text" id="default-input" 
+                                v-model="filter.email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                                placeholder="joao.silva">
+                        </div>
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="status" class="block text-sm font-medium text-gray-900 dark:text-white">
+                                Status:
+                            </label>
+                            <select id="status" 
+                                v-model="filter.status"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <option>Selecione</option>
+                                <option value="true">Ativo</option>
+                                <option value="false">Inativo</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-between items-center">
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                Filtrar
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </div>
+            </main>
+        </class>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -97,7 +123,7 @@ function showModalRemove() {
                         <td class="px-6 py-4 flex justify-center">
                             <!-- Modal toggle -->
                             <ModalEditUsuarios/>
-                            <ModalRemoveUsuarios/>
+                            <ModalRemoveUsuarios :id="user.id"/>
                         </td>
                     </tr>
                 </tbody>
@@ -114,12 +140,17 @@ export default {
     name: "users-list",
     data() {
         return {
-            users: []
+            users: [],
+            filter: {
+                apelido: "",
+                email: "",
+                status: null
+            }
         };
     },
     methods: {
         retrieveUsers() {
-            UserDataService.getAll()
+            UserDataService.getAll(this.filter.apelido, this.filter.email, this.filter.status)
                 .then(response => {
                     this.users = response.data;
                     console.log(response.data)

@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue';
-
-
+import { onMounted, ref } from 'vue';
 import { FwbButton, FwbModal } from 'flowbite-vue'
+
+import ListaCategorias from "@/components/components-categorias/Listar-Categorias.vue";
 
 
 const isShowModalEdit = ref(false)
@@ -13,6 +13,12 @@ function closeModalEdit() {
 function showModalEdit() {
     isShowModalEdit.value = true
 }
+
+defineProps({
+    product: Object
+})
+
+
 </script>
 
 <template>
@@ -36,18 +42,22 @@ function showModalEdit() {
                     <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Nome</label>
                     <input type="text" id="nome"
+                        v-model="dataProduct.nome"
+                        
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Iphone" required />
+                        required />
                 </div>
 
                 <div class="mt-4">
                     <label for="status"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                     <select id="status"
+                        v-model="dataProduct.status"
+                        
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Selecionar status</option>
-                        <option>Ativo</option>
-                        <option>Inativo</option>
+                        <option></option>
+                        <option value="true">Ativo</option>
+                        <option value="false">Inativo</option>
                     </select>
                 </div>
 
@@ -55,12 +65,12 @@ function showModalEdit() {
                     <label for="categoria"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
                     <select id="categoria"
+                        v-model="dataProduct.categoria"
+                        
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Selecionar categoria</option>
-                        <option>Televisores</option>
-                        <option>Informatica</option>
-                        <option>Eletronicos</option>
-                        <option>Celulares</option>
+                        <option>Selecionar categoria</option>
+                        <option>{{ product.categoria.nome }}</option>
+                        <ListaCategorias />
                     </select>
                 </div>
 
@@ -96,4 +106,54 @@ function showModalEdit() {
     </RouterLink>
 </template>
 
-<style scoped></style>
+
+<script>
+import ProductDataService from "@/services/ProductDataService";
+
+export default {
+    name: "products-list",
+    data(){
+        return {
+        dataProduct: {
+            status: false,
+            nome: "",
+            descricao: "",
+            imagem: "",
+            preco: "",
+            estoque: ""
+            },
+        category: 0
+            }
+    },
+
+    methods: {
+        saveProduct() {
+        var product = {
+            status: this.product.status,
+            nome: this.product.nome,
+            descricao: this.product.descricao,
+            imagem: this.product.imagem,
+            preco: this.product.preco,
+            estoque: this.product.estoque
+        }
+        var category = this.category
+
+        console.log(product)
+        ProductDataService.create(product, category)
+        .then(response => {
+            alert("Produto cadastrado com sucesso");
+            window.location.href="/"
+            console.log(response.data);
+        })
+        .catch(e => {
+            console.log(e);
+        })
+        }
+    }
+    
+}
+</script>
+
+
+<style scoped>
+</style>

@@ -51,21 +51,20 @@ const id = idCategory.id
                 </div>
             </template>
         </fwb-modal>
-        <!-- <ModalRemove :id="category.id" /> -->
     </RouterLink>
 </template>
 
 <script>
-import CategoryDataService from "@/services/CategoryDataService";
+import UserDataService from "@/services/UserDataService";
 
 export default {
   name: "categories-delete",
   methods: {
     removeCategory(id){
-        CategoryDataService.deleteCategory(id)
+        UserDataService.deleteUser(id)
         .then(response => {
-            alert("Categoria removida com sucesso")
-            window.location.reload("/categorias");
+            alert("Usuário removido com sucesso")
+            window.location.href="/usuarios";
             console.log(response)
         })
         .catch(e => {

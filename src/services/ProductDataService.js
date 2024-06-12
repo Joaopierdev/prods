@@ -1,17 +1,23 @@
 import http from "../http-common";
 
 class ProductDataService {
-    getAll(){
-        return http.get("/produtos");
+    async getAll(nome, idCategoria, status) {
+        const params = {
+            NomeProduto: nome,
+            idCategoria: idCategoria,
+            status: status
+        }
+        
+        return await http.get(`/produtos`, { params: params });
     }
 
-    deleteProduct(id){
+    deleteProduct(id) {
         return http.delete(`/produtos/${id}`);
     }
 
-    // create(data){
-    //     return http.post("/posts", data)
-    // }
+    create(data, categoryId) {
+        return http.post(`/produtos/?IdCategoria=${categoryId}`, data)
+    }
 }
 
 export default new ProductDataService();

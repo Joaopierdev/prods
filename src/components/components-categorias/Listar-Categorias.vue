@@ -12,7 +12,7 @@ import CategoriesDataService from "@/services/CategoryDataService";
             retrieveCategories() {
                 CategoriesDataService.getAll()
                 .then(response => {
-                    this.categories = response.data;
+                    this.categories = response.data.data;
                     console.log(response.data)
                 })
                 .catch(e => {
@@ -28,7 +28,7 @@ import CategoriesDataService from "@/services/CategoryDataService";
 
 
 <template>
-    <option id="produto-opcoes" v-for="(category, index) in categories" :key="index" > {{ category.nome }} </option>
+    <option id="produto-opcoes" :value="category.id" v-for="(category, index) in categories" :key="index" > {{ category.nome }} </option>
 </template>
 
 <style>

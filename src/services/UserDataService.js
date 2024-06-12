@@ -1,11 +1,18 @@
 import http from "../http-common";
 
 class UserDataService {
-    getAll(){
-        return http.get("/usuarios");
+    getAll(apelido, email, status){
+        const params = {
+            status: status,
+            ApelidoUsuario: apelido,
+            email: email
+
+        }
+
+        return http.get(`/usuarios`, {params: params});
     }
 
-    deleteProduct(id){
+    deleteUser(id){
         return http.delete(`/usuarios/${id}`);
     }
 

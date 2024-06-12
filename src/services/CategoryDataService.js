@@ -1,8 +1,13 @@
 import http from "../http-common";
 
 class CategoryDataService {
-    getAll(){
-        return http.get("/categorias");
+    async getAll(nome, status){
+        const params = {
+            nomeCategoria: nome,
+            status: status
+        }
+
+        return await http.get(`/categorias`, {params: params});
     }
 
     create(category){

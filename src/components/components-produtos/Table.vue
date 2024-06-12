@@ -1,15 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import produtosJson from '@/assets/data/produtos.json';
-import Filter from "@/components/components-produtos/Filter.vue";
-import FilterMobile from "@/components/components-produtos/Filter-mobile.vue";
 import ModalEdit from "@/components/components-produtos/Modal-edit-produtos.vue";
 import ModalRemove from "@/components/components-produtos/Modal-remove-produtos.vue";
 import ListaCategorias from "@/components/components-categorias/Listar-Categorias.vue";
 
 import Pagination from "@/components/Pagination.vue";
 import { FwbButton, FwbModal } from 'flowbite-vue'
-
 
 const isShowModalEdit = ref(false)
 
@@ -36,27 +32,23 @@ function showModalRemove() {
         <class class="filter-desktop">
             <main class="content border-solid border-2 border-gray-200 shadow-lg rounded-lg">
                 <div class="overflow-x-auto">
-                    <form class="filter flex flex-col lg:flex-row sm:space-x-4 max-w-sm mx-auto my-4">
+                    <form class="filter flex flex-col lg:flex-row sm:space-x-4 max-w-sm mx-auto my-4" @submit.prevent="retrieveProducts()">
                         <div class="flex flex-col w-full sm:w-1/2">
-                            <label for="number-input"
-                                class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Código:</label>
-                            <input type="number" id="number-input" aria-describedby="helper-text-explanation"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="12345" />
-                        </div>
-                        <div class="flex flex-col w-full sm:w-1/2">
-                            <label for="default-input" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
-                            <input type="text" id="default-input"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Nome do produto">
+                            <label for="default-input"
+                                class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
+                            <input type="text" id="default-input" v-model="filter.nome"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                                placeholder="Nome do produto">
                         </div>
                         <div class="flex flex-col w-full sm:w-1/2">
                             <label for="status" class="block text-sm font-medium text-gray-900 dark:text-white">
                                 Status
                             </label>
-                            <select id="status"
+                            <select id="status" v-model="filter.status"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <option>Ativo</option>
-                                <option>Inativo</option>
+                                <option>Selecione</option>
+                                <option value="true">Ativo</option>
+                                <option value="false">Inativo</option>
                             </select>
                         </div>
 
@@ -64,14 +56,14 @@ function showModalRemove() {
                             <label for="categoria" class="block text-sm font-medium text-gray-900 dark:text-white">
                                 Categoria
                             </label>
-                            <select id="categoria"
+                            <select id="categoria" v-model="filter.categoria"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                 <option selected>Selecione</option>
                                 <ListaCategorias />
                             </select>
                         </div>
                         <div class="flex flex-col sm:flex-row justify-between items-center">
-                            <button
+                            <button type="submit"
                                 class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                 Filtrar
                             </button>
@@ -79,9 +71,6 @@ function showModalRemove() {
                     </form>
                 </div>
             </main>
-        </class>
-        <class class="filter-mobile">
-            <FilterMobile />
         </class>
         <div class="overflow-x-auto ">
         </div>
@@ -103,8 +92,6 @@ function showModalRemove() {
                 <tbody class="">
                     <tr v-for="(product, index) in products" :key="index"
                         class="bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-
                         <td class="px-6 py-4">
                             <img class="w-12 mx-auto md:w-32 max-w-full max-h-full"
                                 :src="product.image ?? '/public/defaultNoImage.png'" :alt="product.nome">
@@ -115,15 +102,15 @@ function showModalRemove() {
                         <td class="mx-6 my-4">
                             <div style="" class="mx-4"
                                 :class="product.status === true ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 rounded-full dark:bg-red-900 dark:text-red-300'">
-                                {{ product.status  ? 'Ativo' : 'Inativo' }}
+                                {{ product.status ? 'Ativo' : 'Inativo' }}
                             </div>
                         </td>
                         <td class="">{{ product.categoria.nome }}</td>
                         <td class="">R${{ product.preco }}</td>
                         <td class="">{{ product.estoque }}</td>
                         <td class="acoes flex items-center justify-center">
-                            <ModalEdit />
-                            <ModalRemove :id="product.id"/>
+                            <ModalEdit :product="product" />
+                            <ModalRemove :id="product.id" />
                         </td>
                     </tr>
                 </tbody>
@@ -141,12 +128,17 @@ export default {
     name: "products-list",
     data() {
         return {
-            products: []
+            products: [],
+            filter: {
+                nome: "",
+                idCategoria: null,
+                status: null
+            }
         };
     },
     methods: {
         retrieveProducts() {
-            ProductDataService.getAll()
+            ProductDataService.getAll(this.filter.nome, this.filter.idCategoria, this.filter.status)
                 .then(response => {
                     this.products = response.data.data;
                     console.log(response.data)
@@ -164,8 +156,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .acoes {
     display: flex;
     align-items: center;

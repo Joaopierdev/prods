@@ -1,99 +1,217 @@
 <script setup>
-    import { ref, onMounted } from 'vue';
-    import produtosJson from '@/assets/data/produtos.json';
-    import FilterMobile from "@/components/components-produtos/Filter-mobile.vue";
+import { ref, onMounted } from 'vue';
+import produtosJson from '@/assets/data/produtos.json';
+import Filter from "@/components/components-produtos/Filter.vue";
+import FilterMobile from "@/components/components-produtos/Filter-mobile.vue";
+import ModalEdit from "@/components/components-produtos/Modal-edit-produtos.vue";
+import ModalRemove from "@/components/components-produtos/Modal-remove-produtos.vue";
+import ListaCategorias from "@/components/components-categorias/Listar-Categorias.vue";
 
-    const produtos = ref([]);
-    const preco = ref(0);
+import Pagination from "@/components/Pagination.vue";
+import { FwbButton, FwbModal } from 'flowbite-vue'
 
-    onMounted(() => {
-        produtos.value = produtosJson.produtos;
-    });
 
-    function atualizaPreco(event) {
-        preco.value = event.target.value;
-    }
+const isShowModalEdit = ref(false)
+
+function closeModalEdit() {
+    isShowModalEdit.value = false
+}
+function showModalEdit() {
+    isShowModalEdit.value = true
+}
+
+const isShowModalRemove = ref(false)
+
+function closeModalRemove() {
+    isShowModalRemove.value = false
+}
+function showModalRemove() {
+    isShowModalRemove.value = true
+}
+
 </script>
-
 
 <template>
     <main class="content">
-        <FilterMobile />
-        <div class="overflow-x-auto">
+        <class class="filter-desktop">
+            <main class="content border-solid border-2 border-gray-200 shadow-lg rounded-lg">
+                <div class="overflow-x-auto">
+                    <form class="filter flex flex-col lg:flex-row sm:space-x-4 max-w-sm mx-auto my-4">
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="number-input"
+                                class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Código:</label>
+                            <input type="number" id="number-input" aria-describedby="helper-text-explanation"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="12345" />
+                        </div>
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="default-input" class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
+                            <input type="text" id="default-input"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Nome do produto">
+                        </div>
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="status" class="block text-sm font-medium text-gray-900 dark:text-white">
+                                Status
+                            </label>
+                            <select id="status"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <option>Ativo</option>
+                                <option>Inativo</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col w-full sm:w-1/2">
+                            <label for="categoria" class="block text-sm font-medium text-gray-900 dark:text-white">
+                                Categoria
+                            </label>
+                            <select id="categoria"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <option selected>Selecione</option>
+                                <ListaCategorias />
+                            </select>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-between items-center">
+                            <button
+                                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                Filtrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </class>
+        <class class="filter-mobile">
+            <FilterMobile />
+        </class>
+        <div class="overflow-x-auto ">
         </div>
         <div class="relative overflow-x-auto border-solid border-2 border-indigo-600 sm:rounded-lg shadow-lg mt-6">
             <table class="table w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">Código</th>
-                        <th scope="col" class="px-6 py-3">Nome do produto</th>
+                        <th scope="col" class="px-6 py-3">Nome</th>
+                        <th scope="col" class="px-6 py-3">Status</th>
                         <th scope="col" class="px-6 py-3">Ações</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="produto in produtos" :key="produto.codigo"
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ produto.codigo }}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ produto.nome }}</td>
-                        <td class="flex px-6 py-4">
-                            <RouterLink to="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                <svg
-                                    class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                    viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
-                                </svg>
-                            </RouterLink>
-                            <RouterLink to="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">
-                                <svg
-                                    class="w-4 h-4 text-red-100 dark:text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
-                                    viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
-                                </svg>
-                            </RouterLink>
+                <tbody class="">
+                    <tr v-for="(product, index) in products" :key="index"
+                        class="bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                        <td class=" font-medium text-gray-900 dark:text-white">{{ product.id }}</td>
+                        <td class=" font-medium text-gray-900 dark:text-white">{{ product.nome }}</td>
+                        <td class="mx-6 my-4">
+                            <div style="" class="mx-4"
+                                :class="product.status === true ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 rounded-full dark:bg-red-900 dark:text-red-300'">
+                                {{ product.status  ? 'Ativo' : 'Inativo' }}
+                            </div>
+                        </td>
+                        <td class="acoes flex items-center justify-center">
+                            <ModalEdit />
+                            <ModalRemove :id="product.id"/>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <Pagination />
     </main>
 </template>
 
+<script>
 
-<style>
-    .content {
-        width: 100%;
-        margin: auto;
+import ProductDataService from "@/services/ProductDataService";
+
+export default {
+    name: "products-list",
+    data() {
+        return {
+            products: []
+        };
+    },
+    methods: {
+        retrieveProducts() {
+            ProductDataService.getAll()
+                .then(response => {
+                    this.products = response.data.data;
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+    },
+    mounted() {
+        this.retrieveProducts();
+    }
+}
+
+</script>
+
+<style scoped>
+
+
+.acoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    width: 7rem;
+    display: block;
+    margin: auto;
+}
+
+.content {
+    width: 100%;
+    margin: auto;
+}
+
+.max-w-sm {
+    max-width: 100%;
+}
+
+.page-text {
+    margin-top: 6rem;
+    width: 100%;
+    font-size: 2rem;
+}
+
+.filter {
+    padding: 10px
+}
+
+.table {
+
+    text-align: center;
+}
+
+button {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+
+.filter-desktop {
+    display: block;
+    /* inline, inline-block */
+}
+
+.filter-mobile {
+    display: none;
+}
+
+@media (max-width: 1022px) {
+    .filter-desktop {
+        display: none;
     }
 
-    .max-w-sm {
-        max-width: 100%;
+    .filter-mobile {
+        display: block;
+        /* ou inline, inline-block */
     }
-
-    .page-text {
-        margin-top: 6rem;
-        width: 100%;
-        font-size: 2rem;
-    }
-
-    .filter {
-        padding: 10px
-    }
-
-    .table {
-        text-align: center;
-        padding: 0;
-    }
-
-    button {
-        justify-content: center;
-        align-items: center;
-        display: flex;
-    }
+}
 </style>
