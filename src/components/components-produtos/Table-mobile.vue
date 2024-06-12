@@ -1,7 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import produtosJson from '@/assets/data/produtos.json';
-import Filter from "@/components/components-produtos/Filter.vue";
 import FilterMobile from "@/components/components-produtos/Filter-mobile.vue";
 import ModalEdit from "@/components/components-produtos/Modal-edit-produtos.vue";
 import ModalRemove from "@/components/components-produtos/Modal-remove-produtos.vue";

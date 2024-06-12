@@ -8,7 +8,9 @@ import ListaCategorias from "@/components/components-categorias/Listar-Categoria
 const isShowModalEdit = ref(false)
 
 function closeModalEdit() {
+    window.location.reload();
     isShowModalEdit.value = false
+    
 }
 function showModalEdit() {
     isShowModalEdit.value = true
@@ -42,8 +44,7 @@ defineProps({
                     <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Nome</label>
                     <input type="text" id="nome"
-                        v-model="dataProduct.nome"
-                        
+                        :value="product.nome"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required />
                 </div>
@@ -52,8 +53,7 @@ defineProps({
                     <label for="status"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                     <select id="status"
-                        v-model="dataProduct.status"
-                        
+                        v-model="product.status"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option></option>
                         <option value="true">Ativo</option>
@@ -65,11 +65,9 @@ defineProps({
                     <label for="categoria"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
                     <select id="categoria"
-                        v-model="dataProduct.categoria"
-                        
+                        v-model="product.idCategoria"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option>Selecionar categoria</option>
-                        <option>{{ product.categoria.nome }}</option>
                         <ListaCategorias />
                     </select>
                 </div>
@@ -78,15 +76,16 @@ defineProps({
                     <label for="preco"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preço</label>
                     <input type="number" id="preco" aria-describedby="helper-text-explanation"
+                        v-model="product.preco"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="90210" required />
                 </div>
 
                 <div class="mt-4">
                     <label for="qtd-vendida"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade
-                        vendida</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estoque</label>
                     <input type="number" id="number-input" aria-describedby="helper-text-explanation"
+                        v-model="product.estoque"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="90210" required />
                 </div>
@@ -97,7 +96,7 @@ defineProps({
                     <fwb-button @click="closeModalEdit" color="alternative">
                         Cancelar
                     </fwb-button>
-                    <fwb-button @click="closeModalEdit" color="blue">
+                    <fwb-button @click="editProduct()" color="blue">
                         Salvar
                     </fwb-button>
                 </div>
@@ -111,35 +110,27 @@ defineProps({
 import ProductDataService from "@/services/ProductDataService";
 
 export default {
-    name: "products-list",
+    name: "products-update",
     data(){
         return {
-        dataProduct: {
-            status: false,
-            nome: "",
-            descricao: "",
-            imagem: "",
-            preco: "",
-            estoque: ""
-            },
-        category: 0
-            }
+        
+        }
     },
-
+    created(){
+console.log("Oi", {produto: this.product})
+    },
     methods: {
-        saveProduct() {
+        editProduct() {
         var product = {
             status: this.product.status,
             nome: this.product.nome,
-            descricao: this.product.descricao,
-            imagem: this.product.imagem,
+            idCategoria: this.product.idCategoria,
             preco: this.product.preco,
             estoque: this.product.estoque
         }
-        var category = this.category
 
         console.log(product)
-        ProductDataService.create(product, category)
+        ProductDataService.editProduct(this.product.id, product)
         .then(response => {
             alert("Produto cadastrado com sucesso");
             window.location.href="/"

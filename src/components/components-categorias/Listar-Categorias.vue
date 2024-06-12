@@ -5,12 +5,16 @@ import CategoriesDataService from "@/services/CategoryDataService";
         name: "categories-list",
         data() {
             return {
-                categories: []
+                categories: [],
+                filter: {
+                nome: "",
+                status: null
+            }
             };
         },
         methods: {
             retrieveCategories() {
-                CategoriesDataService.getAll()
+                CategoriesDataService.getAll(this.filter.nome, this.filter.status)
                 .then(response => {
                     this.categories = response.data.data;
                     console.log(response.data)
