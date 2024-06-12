@@ -57,9 +57,9 @@ function showModalRemove() {
                             <select id="status" 
                                 v-model="filter.status"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <option>Selecione</option>
-                                <option value="true">Ativo</option>
-                                <option value="false">Inativo</option>
+                                <option :value="null" selected>Selecione</option>
+                                <option :value="true">Ativo</option>
+                                <option :value="false">Inativo</option>
                             </select>
                         </div>
                         <div class="flex flex-col sm:flex-row justify-between items-center">
@@ -122,7 +122,7 @@ function showModalRemove() {
                         </td>
                         <td class="px-6 py-4 flex justify-center">
                             <!-- Modal toggle -->
-                            <ModalEditUsuarios/>
+                            <ModalEditUsuarios :user="user"/>
                             <ModalRemoveUsuarios :id="user.id"/>
                         </td>
                     </tr>

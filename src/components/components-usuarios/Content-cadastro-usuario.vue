@@ -110,6 +110,7 @@ export default {
       .then(response => {
         this.user.id = response.data.id;
         alert("Usuário salvo com sucesso");
+        window.location.href="/usuarios";
         console.log(response.data);
       })
       .catch(e => {

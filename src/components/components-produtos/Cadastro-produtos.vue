@@ -73,30 +73,29 @@ export default {
         return {
         product: {
             status: false,
+            idCategoria: null,
             nome: "",
             descricao: "",
             imagem: "",
             preco: "",
             estoque: ""
             },
-        category: 0
-            }
+        }
     },
-
     methods: {
         saveProduct() {
         var product = {
             status: this.product.status,
+            idCategoria: this.category,
             nome: this.product.nome,
             descricao: this.product.descricao,
             imagem: this.product.imagem,
             preco: this.product.preco,
             estoque: this.product.estoque
         }
-        var category = this.category
 
         console.log(product)
-        ProductDataService.create(product, category)
+        ProductDataService.create(product)
         .then(response => {
             alert("Produto cadastrado com sucesso");
             window.location.href="/"
@@ -107,7 +106,6 @@ export default {
         })
         }
     }
-    
 }
 </script>
 

@@ -16,18 +16,11 @@ class ProductDataService {
     }
 
     editProduct(id, data){
-        const params = {
-            status: data.status,
-            nome: data.nome,
-            idCategoria: data.idCategoria,
-            preco: data.preco,
-            estoque: data.estoque
-        }
-        return http.put(`/produtos/${id}`, params)
+        return http.put(`/produtos/${id}`, data)
     }
 
     create(data, categoryId) {
-        return http.post(`/produtos/?IdCategoria=${categoryId}`, data)
+        return http.post("/produtos", data)
     }
 }
 

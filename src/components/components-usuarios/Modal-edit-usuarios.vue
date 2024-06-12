@@ -13,7 +13,9 @@ function showModalEdit() {
     isShowModalEdit.value = true
 }
 
-
+defineProps({
+    user: Object
+})
 
 </script>
 
@@ -33,42 +35,78 @@ function showModalEdit() {
                 </div>
             </template>
 
-            <template #body class="">
-                <div>
+            <template #body class="mt-4">
+                <div class="mt-4">
+                    <label for="funcao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Imagem</label>
+                    <input type="text" id="funcao"
+                        v-model="user.imagem"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required />
+                </div>
+                <div class="mt-4">
                     <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Nome</label>
                     <input type="text" id="nome"
+                        v-model="user.nome"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Iphone" required />
+                        required />
+                </div>
+
+                <div class="mt-4">
+                    <label for="status"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                    <select id="status"
+                        v-model="user.status"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option :value="null" selected>Selecionar status</option>
+                        <option :value="true">Ativo</option>
+                        <option :value="false">Inativo</option>
+                    </select>
+                </div>
+
+                <div class="mt-4">
+                    <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Apelido</label>
+                    <input type="text" id="nome"
+                        v-model="user.apelido"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required />
                 </div>
 
                 <div class="mt-4">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Email</label>
                     <input type="text" id="email"
+                        v-model="user.email"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Iphone" required />
+                        required />
+                </div>
+                
+                <div class="mt-4">
+                    <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Senha</label>
+                    <input type="password" id="nome"
+                        v-model="user.senha"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required />
                 </div>
 
                 <div class="mt-4">
                     <label for="funcao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Função</label>
                     <input type="text" id="funcao"
+                        v-model="user.cargo"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Iphone" required />
+                        required />
                 </div>
-
-                
-
-                
-
             </template>
             <template #footer>
                 <div class="flex justify-between">
                     <fwb-button @click="closeModalEdit" color="alternative">
                         Cancelar
                     </fwb-button>
-                    <fwb-button @click="closeModalEdit" color="blue">
+                    <fwb-button @click="editUsers()" color="blue">
                         Salvar
                     </fwb-button>
                 </div>
@@ -77,4 +115,40 @@ function showModalEdit() {
     </RouterLink>
 </template>
 
-<style scoped></style>
+
+<script>
+import UserDataService from "@/services/UserDataService";
+
+export default {
+    name: "users-update",
+    methods: {
+        editUsers() {
+        var user = {
+            status: this.user.status,
+            nome: this.user.nome,
+            cargo: this.user.cargo,
+            apelido: this.user.apelido,
+            email: this.user.email,
+            senha: this.user.senha,
+            imagem: this.user.imagem
+        }
+
+        console.log(user)
+        UserDataService.editUser(this.user.id, user)
+        .then(response => {
+            alert("Usuário editado com sucesso");
+            window.location.href="/usuarios"
+            console.log(response.data);
+        })
+        .catch(e => {
+            console.log(e);
+        })
+        }
+    }
+    
+}
+</script>
+
+
+<style scoped>
+</style>

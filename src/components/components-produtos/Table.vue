@@ -46,9 +46,9 @@ function showModalRemove() {
                             </label>
                             <select id="status" v-model="filter.status"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                <option>Selecione</option>
-                                <option value="true">Ativo</option>
-                                <option value="false">Inativo</option>
+                                <option :value="null">Selecione</option>
+                                <option :value="true">Ativo</option>
+                                <option :value="false">Inativo</option>
                             </select>
                         </div>
 
@@ -56,7 +56,8 @@ function showModalRemove() {
                             <label for="categoria" class="block text-sm font-medium text-gray-900 dark:text-white">
                                 Categoria
                             </label>
-                            <select id="categoria" v-model="filter.categoria"
+                            <select id="categoria" 
+                                v-model="filter.categoria"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                 <option selected>Selecione</option>
                                 <ListaCategorias />

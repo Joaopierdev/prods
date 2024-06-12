@@ -14,6 +14,11 @@ class CategoryDataService {
         return http.post("/categorias", category)
     }
 
+    editCategory(id, category){
+        return http.put(`/categorias/${id}`, category)
+    }
+
+
     deleteCategory(id){
         return http.delete(`/categorias/${id}`);
     }

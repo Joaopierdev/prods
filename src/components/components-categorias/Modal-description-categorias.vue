@@ -10,6 +10,11 @@ function closeModalDescription() {
 function showModalDescription() {
     isShowModalDescription.value = true
 }
+
+defineProps({
+    category: Object
+})
+
 </script>
 
 <template>
@@ -33,9 +38,7 @@ function showModalDescription() {
 
             <template #body>
                 <div class="flex items-center text-xl justify-center align-center text-gray-900">
-                    <h1 class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab libero explicabo odit
-                        possimus ratione molestiae hic sed minus tempore ipsa tempora, enim perspiciatis cupiditate
-                        impedit error similique temporibus iusto laboriosam!</h1>
+                    <h1 class="m-0">{{ category.descricao }}</h1>
                 </div>
 
             </template>

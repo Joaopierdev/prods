@@ -12,13 +12,19 @@ class UserDataService {
         return http.get(`/usuarios`, {params: params});
     }
 
+    create(data){
+        return http.post("/usuarios", data)
+    }
+
+    editUser(id, data){
+        return http.put(`/usuarios/${id}`, data)
+    }
+
     deleteUser(id){
         return http.delete(`/usuarios/${id}`);
     }
 
-    create(data){
-        return http.post("/usuarios", data)
-    }
+    
 }
 
 export default new UserDataService();

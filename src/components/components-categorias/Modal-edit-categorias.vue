@@ -13,6 +13,9 @@ function showModalEdit() {
     isShowModalEdit.value = true
 }
 
+defineProps({
+    category: Object
+})
 
 
 </script>
@@ -38,18 +41,20 @@ function showModalEdit() {
                     <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Nome</label>
                     <input type="text" id="nome"
+                        v-model="category.nome"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Iphone" required />
+                        required />
                 </div>
 
                 <div class="mt-4">
                     <label for="status"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                     <select id="status"
+                        v-model="category.status"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected>Selecionar status</option>
-                        <option>Ativo</option>
-                        <option>Inativo</option>
+                        <option :value="true">Ativo</option>
+                        <option :value="false">Inativo</option>
                     </select>
                 </div>
 
@@ -57,6 +62,7 @@ function showModalEdit() {
                     <label for="descricao"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição</label>
                     <textarea id="descricao" rows="4"
+                        v-model="category.descricao"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Write your thoughts here..."></textarea>
                 </div>
@@ -67,7 +73,7 @@ function showModalEdit() {
                     <fwb-button @click="closeModalEdit" color="alternative">
                         Cancelar
                     </fwb-button>
-                    <fwb-button @click="closeModalEdit" color="blue">
+                    <fwb-button @click="editCategories()" color="blue">
                         Salvar
                     </fwb-button>
                 </div>
@@ -75,5 +81,35 @@ function showModalEdit() {
         </fwb-modal>
     </RouterLink>
 </template>
+
+<script>
+import CategoryDataService from "@/services/CategoryDataService";
+
+export default {
+    name: "categories-update",
+    methods: {
+        editCategories() {
+        var category = {
+            status: this.category.status,
+            nome: this.category.nome,
+            descricao: this.category.descricao,
+        }
+
+        console.log(category)
+        CategoryDataService.editCategory(this.category.id, category)
+        .then(response => {
+            alert("Categoria editada com sucesso");
+            window.location.href="/categorias"
+            console.log(response.data);
+        })
+        .catch(e => {
+            console.log(e);
+        })
+        }
+    }
+}
+</script>
+
+
 
 <style scoped></style>

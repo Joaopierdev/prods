@@ -73,6 +73,7 @@ export default {
       .then(response => {
         this.category.id = response.data.id;
         alert("Categoria salva com sucesso");
+        window.location.href="/categorias";
         console.log(response.data);
       })
       .catch(e => {
