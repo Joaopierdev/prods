@@ -1,29 +1,37 @@
-# prods
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+# Gestão interna de produtos eletrônicos para E-commerce
 
 ## Project Setup
-
-```sh
+sh
 npm install
-```
 
-### Compile and Hot-Reload for Development
+sh
+npm install flowbite-vue
 
-```sh
+sh
 npm run dev
-```
 
-### Compile and Minify for Production
+---
+## Projeto desenvolvido para gerenciamento e controle de produtos.
+### Contendo as seguintes telas: 
+- Produtos:
+  - Cadastro de produtos
+  - Listagem de produtos
+- Categorias:
+  - Cadastro de categorias
+  - Listagem de categorias
+- Usuários
+  - Cadastro de usuários internos
+  - Listagem usuários
 
-```sh
-npm run build
-```
+### Tecnologias utilizadas:
+- Vue.js
+- Tailwind CSS
+- HTML
+- CSS
+- JavaScript
+- C# 
+---
+### Futuras melhorias:
+- Paginação
+- Tela de login
+- Tornar 100% responsivo
